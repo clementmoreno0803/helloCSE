@@ -3,11 +3,11 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useMovieStore = defineStore("movieStore", () => {
-  const movies = ref<topMovieInterface[]>([]);
+  const topMovies = ref<topMovieInterface[]>([]);
 
   //setter
   const setTopMovies = (newMovies: topMovieInterface[]) => {
-    movies.value = newMovies;
+    topMovies.value = newMovies;
   };
-  return { movies, setTopMovies };
+  return { topMovies, setTopMovies };
 });

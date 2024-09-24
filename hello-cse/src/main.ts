@@ -11,7 +11,7 @@ const pinia = createPinia();
 
 const vuetify = createVuetify({
   components,
-  directives,
+  directives
 });
 
 createApp(App).use(router).use(vuetify).use(pinia).mount("#app");
