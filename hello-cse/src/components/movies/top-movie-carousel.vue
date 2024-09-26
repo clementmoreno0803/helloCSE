@@ -17,7 +17,7 @@
             <h3>{{ movie.release_date }}</h3>
           </div>
           <v-progress-circular :model-value="movie.vote_average" :size="40" :width="4" color="white">
-            <p>{{ `${movie.vote_average}%` }}</p>
+            <p>{{ movie.vote_average }}</p>
           </v-progress-circular>
         </div>
       </v-carousel-item>

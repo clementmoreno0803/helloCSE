@@ -6,6 +6,7 @@
           class="all-movies__cart-container"
           :style="{ backgroundImage: `url(${movie.poster_path})`, backgroundSize: '100%' }"
           variant="tonal"
+          @click="goToDetail(movie.id)"
         >
           <div class="all-movies__cart-informations">
             <div class="all-movies__cart-description">
@@ -31,12 +32,18 @@ import { useMovieService } from "@/services/UseMovieService";
 import { useMovieStore } from "@/stores/movieStore";
 import { storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const { getUpCommingMovies } = useMovie();
 const { upComingMovies, getFilteredMovies } = storeToRefs(useMovieStore());
+const router = useRouter();
 
 const page = ref(1);
 const hasMore = ref(true);
+
+const goToDetail = (id: number) => {
+  router.push({ name: "MovieDetail", params: { id } });
+};
 
 const load = async ({ done }) => {
   if (!hasMore.value) {

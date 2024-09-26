@@ -1,3 +1,4 @@
+import { movieDetail } from "@/models/movieDetailInterface";
 import { topMovieInterface } from "@/models/topMovieInterface";
 import { upComingMoviesInterface } from "@/models/upCommingMovieInterface";
 import { defineStore } from "pinia";
@@ -6,6 +7,7 @@ import { computed, ref } from "vue";
 export const useMovieStore = defineStore("movieStore", () => {
   const topMovies = ref<topMovieInterface[]>([]);
   const upComingMovies = ref<upComingMoviesInterface[]>([]);
+  const movieDetails = ref<movieDetail>();
   const inputFilter = ref<string>("");
 
   //getter
@@ -24,14 +26,19 @@ export const useMovieStore = defineStore("movieStore", () => {
   const setMovieFilterByName = (input: string) => {
     inputFilter.value = input;
   };
+  const setMovieDetails = (details: movieDetail) => {
+    movieDetails.value = details;
+  };
 
   return {
     topMovies,
     upComingMovies,
     inputFilter,
     getFilteredMovies,
+    movieDetails,
     setTopMovies,
     setUpComingMovies,
-    setMovieFilterByName
+    setMovieFilterByName,
+    setMovieDetails
   };
 });

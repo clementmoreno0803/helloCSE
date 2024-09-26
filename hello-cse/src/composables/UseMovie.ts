@@ -2,8 +2,8 @@ import { useMovieService } from "@/services/UseMovieService";
 import { useMovieStore } from "@/stores/movieStore";
 
 export const useMovie = () => {
-  const { topMovies, upComingMovies } = useMovieService();
-  const { setTopMovies, setUpComingMovies, setMovieFilterByName } = useMovieStore();
+  const { topMovies, upComingMovies, movieDetails } = useMovieService();
+  const { setTopMovies, setUpComingMovies, setMovieFilterByName, setMovieDetails } = useMovieStore();
 
   const getTopMovies = async () => {
     const topMoviesArray = await topMovies();
@@ -19,5 +19,10 @@ export const useMovie = () => {
     setMovieFilterByName(input);
   };
 
-  return { getTopMovies, getUpCommingMovies, setSearchFilters };
+  const getMovieDetail = async (id: string) => {
+    const details = await movieDetails(id);
+    setMovieDetails(details);
+  };
+
+  return { getTopMovies, getUpCommingMovies, getMovieDetail, setSearchFilters };
 };
