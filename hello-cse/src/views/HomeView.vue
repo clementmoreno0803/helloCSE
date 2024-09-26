@@ -1,9 +1,11 @@
 <template>
   <div class="home">
-    <top-movie-card></top-movie-card>
+    <top-movie-carousel></top-movie-carousel>
+    <all-movies></all-movies>
   </div>
 </template>
 
 <script setup lang="ts">
-import topMovieCard from "@/components/movies/top-movie-card.vue";
+import topMovieCarousel from "@/components/movies/top-movie-carousel.vue";
+import allMovies from "@/components/movies/all-movies.vue";
 </script>

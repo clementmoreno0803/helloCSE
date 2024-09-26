@@ -1,6 +1,15 @@
 <template>
   <div>
-    <v-carousel class="top-movie-card__carousel-container" show-arrows hide-delimiters>
+    <div v-if="topMovies.length == 0">
+      <v-skeleton-loader :elevation="3" type="card" class="top-movie-card__carousel-container"></v-skeleton-loader>
+    </div>
+    <v-carousel v-else hide-delimiter-background show-arrows="true" class="top-movie-card__carousel-container">
+      <template v-slot:prev="{ props }">
+        <v-btn color="transparent" @click="props.onClick">{{ "<" }}</v-btn>
+      </template>
+      <template v-slot:next="{ props }">
+        <v-btn color="transparent" @click="props.onClick">{{ ">" }}</v-btn>
+      </template>
       <v-carousel-item v-for="movie in topMovies" :key="movie.id" :src="movie.poster_path" cover>
         <div class="top-movie-card__carousel-item">
           <div>
@@ -31,7 +40,7 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-::deep .v-window__container {
+::v-deep .v-window__container {
   height: 100%;
   object-fit: 50%;
   object-position: 50%;
@@ -43,15 +52,14 @@ onMounted(async () => {
 ::v-deep .v-responsive__content {
   position: absolute;
   width: 100%;
-  height: 35%;
-  backdrop-filter: blur(9px);
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   bottom: 0;
   left: 100%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.0618040966386554) 0%, rgba(0, 0, 0, 1) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 .top-movie-card {

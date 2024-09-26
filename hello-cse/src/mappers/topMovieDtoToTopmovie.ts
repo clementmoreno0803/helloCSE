@@ -1,7 +1,7 @@
-import { topMovieDto } from "../dto/topMovieDto";
-import { topMovieInterface } from "../topMovieInterface";
+import { topMovieDto } from "../models/dto/topMovieDto";
+import { topMovieInterface } from "../models/topMovieInterface";
 
-export const movieDtoTomovie = (movieDto: topMovieDto): topMovieInterface => {
+export const topMovieDtoToTopmovie = (movieDto: topMovieDto): topMovieInterface => {
   return {
     backdrop_path: `https://image.tmdb.org/t/p/w300/${movieDto.backdrop_path}`,
     genre_ids: movieDto.genre_ids,

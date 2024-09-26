@@ -1,10 +1,16 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link>
+    <h1>NETFLIX</h1>
+    <search-input></search-input>
   </nav>
   <router-view />
 </template>
 
+<script setup lang="ts">
+import searchInput from "./components/search-input.vue";
+</script>
+
+<style scoped></style>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -16,6 +22,7 @@
 
 nav {
   padding: 30px;
+  display: flex;
 
   a {
     font-weight: bold;
