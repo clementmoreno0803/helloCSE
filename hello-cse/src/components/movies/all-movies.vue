@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-infinite-scroll class="all-movies" :height="1000" :items="upComingMovies" :onLoad="load">
-      <div v-for="movie in upComingMovies" :key="movie.id">
+    <v-infinite-scroll class="all-movies" :height="1000" :items="getFilteredMovies" :onLoad="load">
+      <div v-for="movie in getFilteredMovies" :key="movie.id">
         <v-card
           class="all-movies__cart-container"
           :style="{ backgroundImage: `url(${movie.poster_path})`, backgroundSize: '100%' }"
@@ -33,7 +33,7 @@ import { storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";
 
 const { getUpCommingMovies } = useMovie();
-const { upComingMovies } = storeToRefs(useMovieStore());
+const { upComingMovies, getFilteredMovies } = storeToRefs(useMovieStore());
 
 const page = ref(1);
 const hasMore = ref(true);
@@ -55,8 +55,8 @@ const load = async ({ done }) => {
 
   done();
 
-  onMounted(async () => {
-    await getUpCommingMovies(page.value);
+  onMounted(() => {
+    getUpCommingMovies(page.value);
   });
 };
 </script>

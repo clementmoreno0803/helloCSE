@@ -8,13 +8,11 @@ export const useMovieStore = defineStore("movieStore", () => {
   const upComingMovies = ref<upComingMoviesInterface[]>([]);
   const inputFilter = ref<string>("");
 
-  console.log(inputFilter.value, "PROUUUT");
-
   //getter
 
-  // const getFilteredMovies = computed(() =>
-  //   upComingMovies.value.filter((movie) => movie.title.includes(inputFilter.value))
-  // );
+  const getFilteredMovies = computed(() => {
+    return upComingMovies.value.filter((movie) => movie.title.toLowerCase().includes(inputFilter.value.toLowerCase()));
+  });
 
   //setter
   const setTopMovies = (newMovies: topMovieInterface[]) => {
@@ -25,14 +23,13 @@ export const useMovieStore = defineStore("movieStore", () => {
   };
   const setMovieFilterByName = (input: string) => {
     inputFilter.value = input;
-    console.log(inputFilter.value, "input");
   };
 
   return {
     topMovies,
     upComingMovies,
     inputFilter,
-    // getFilteredMovies,
+    getFilteredMovies,
     setTopMovies,
     setUpComingMovies,
     setMovieFilterByName

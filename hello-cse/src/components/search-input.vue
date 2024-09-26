@@ -10,11 +10,6 @@ import { ref } from "vue";
 const { setSearchFilters } = useMovie();
 
 const inputSearch = ref("");
-
-// watch(inputSearch, (newValue: string) => {
-//   inputSearch.value = newValue;
-//   console.log(inputSearch.value, "inputSearch");
-// });
 </script>
 
 <style scoped></style>

@@ -16,13 +16,8 @@ export const useMovie = () => {
   };
 
   const setSearchFilters = (input: string) => {
-    console.log(input, "composable");
     setMovieFilterByName(input);
   };
-
-  // const getSearchInputFilter = () => {
-  //   return useMovieStore().inputFilter;
-  // };
 
   return { getTopMovies, getUpCommingMovies, setSearchFilters };
 };
