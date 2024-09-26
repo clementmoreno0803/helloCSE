@@ -43,6 +43,7 @@
       </template>
     </v-list>
   </v-card>
+  <espace-commentaire></espace-commentaire>
 </template>
 
 <script setup lang="ts">
@@ -51,6 +52,7 @@ import { useRoute } from "vue-router";
 import { useMovie } from "@/composables/UseMovie";
 import { storeToRefs } from "pinia";
 import { useMovieStore } from "@/stores/movieStore";
+import espaceCommentaire from "../espace-commentaire.vue";
 
 const { getMovieDetail } = useMovie();
 const { movieDetails } = storeToRefs(useMovieStore());

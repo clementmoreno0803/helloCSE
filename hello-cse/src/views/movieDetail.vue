@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import moviesDetails from "@/components/movies/movies-details.vue";
+import moviesDetails from "@/components/movies/details-movies.vue";
 </script>
 
 <style scoped></style>
