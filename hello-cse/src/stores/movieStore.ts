@@ -26,8 +26,10 @@ export const useMovieStore = defineStore("movieStore", () => {
   const setMovieFilterByName = (input: string) => {
     inputFilter.value = input;
   };
-  const setMovieDetails = (details: movieDetail) => {
-    movieDetails.value = details;
+  const setMovieDetails = (details: movieDetail | undefined) => {
+    if (details) {
+      return (movieDetails.value = details);
+    }
   };
 
   return {

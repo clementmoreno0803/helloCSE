@@ -1,3 +1,4 @@
+import { movieDetail } from "@/models/movieDetailInterface";
 import { useMovieService } from "@/services/UseMovieService";
 import { useMovieStore } from "@/stores/movieStore";
 
