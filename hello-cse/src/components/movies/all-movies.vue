@@ -10,7 +10,7 @@
           <div class="all-movies__cart-informations">
             <div class="all-movies__cart-description">
               <h2>{{ movie.title }}</h2>
-              <v-tooltip :text="movie.overview" location="top">
+              <v-tooltip :text="movie.overview" location="bottom">
                 <template v-slot:activator="{ props }">
                   <p v-bind="props">{{ movie.overview }}</p>
                 </template>

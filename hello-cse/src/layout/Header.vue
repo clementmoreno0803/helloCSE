@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav>
-      <h1>NETFLIX</h1>
+      <h1>NETFLIrX</h1>
       <router-link to="/">Home</router-link>
       <v-container id="input-usage" fluid>
         <v-row>

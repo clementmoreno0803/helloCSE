@@ -1,15 +1,20 @@
 <template>
-  <div>
-    <input type="text" id="search" placeholder="Insérer le nom d'un film" v-model="" />
-  </div>
+  <div><input type="text" name="" id="" v-model="inputSearch" @keydown="setSearchFilters(inputSearch)" /></div>
+  {{ inputSearch }}
 </template>
 
 <script setup lang="ts">
+import { useMovie } from "@/composables/UseMovie";
 import { ref } from "vue";
 
-const test = ref("");
+const { setSearchFilters } = useMovie();
 
-console.log(test, "test");
+const inputSearch = ref("");
+
+// watch(inputSearch, (newValue: string) => {
+//   inputSearch.value = newValue;
+//   console.log(inputSearch.value, "inputSearch");
+// });
 </script>
 
 <style scoped></style>

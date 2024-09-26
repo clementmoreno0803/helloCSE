@@ -3,7 +3,7 @@ import { useMovieStore } from "@/stores/movieStore";
 
 export const useMovie = () => {
   const { topMovies, upComingMovies } = useMovieService();
-  const { setTopMovies, setUpComingMovies } = useMovieStore();
+  const { setTopMovies, setUpComingMovies, setMovieFilterByName } = useMovieStore();
 
   const getTopMovies = async () => {
     const topMoviesArray = await topMovies();
@@ -15,5 +15,14 @@ export const useMovie = () => {
     setUpComingMovies(upComingMoviesArray);
   };
 
-  return { getTopMovies, getUpCommingMovies };
+  const setSearchFilters = (input: string) => {
+    console.log(input, "composable");
+    setMovieFilterByName(input);
+  };
+
+  // const getSearchInputFilter = () => {
+  //   return useMovieStore().inputFilter;
+  // };
+
+  return { getTopMovies, getUpCommingMovies, setSearchFilters };
 };
