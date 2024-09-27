@@ -10,6 +10,6 @@ export const topMovieDtoToTopmovie = (movieDto: topMovieDto): topMovieInterface 
     poster_path: `https://image.tmdb.org/t/p/w300/${movieDto.poster_path}`,
     release_date: movieDto.release_date,
     title: movieDto.title,
-    vote_average: `${Math.round(movieDto.vote_average * 10)}%`
+    vote_average: Math.round(movieDto.vote_average * 10)
   };
 };

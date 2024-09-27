@@ -9,3 +9,10 @@
 import topMovieCarousel from "@/components/movies/top-movie-carousel.vue";
 import allMovies from "@/components/movies/all-movies.vue";
 </script>
+
+<style lang="scss" scoped>
+.home {
+  width: 95vw;
+  margin: 0 auto;
+}
+</style>
