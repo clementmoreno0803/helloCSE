@@ -10,14 +10,23 @@
       @input="v$.name.$touch"
     ></v-text-field>
 
-    <v-text-field
-      v-model="comment.commentPart"
-      label="Comment"
-      :error-messages="v$.commentPart.$errors.map((e) => e.$message)"
-      required
-      @blur="v$.commentPart.$touch"
-      @input="v$.commentPart.$touch"
-    ></v-text-field>
+    <div>
+      <editor
+        :api-key="MYSIWYG_API_KEY"
+        v-model="comment.commentPart"
+        :init="{
+          height: 500,
+          menubar: false,
+          plugins: 'lists link image code',
+          toolbar:
+            'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat | code'
+        }"
+      >
+        <span v-if="v$.commentPart.$errors.length" class="error-message">
+          {{ v$.commentPart.$errors[0].$message }}
+        </span>
+      </editor>
+    </div>
 
     <v-text-field
       v-model="comment.note"
@@ -30,6 +39,7 @@
     <v-btn class="me-4" @click="submit">submit</v-btn>
     <v-btn @click="clear">clear</v-btn>
   </form>
+  {{ comment.commentPart }}
 </template>
 
 <script setup lang="ts">
@@ -37,6 +47,8 @@ import { ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { alpha, alphaNum, between, maxLength, minLength, numeric, required } from "@vuelidate/validators";
 import { CommentForm } from "@/models/commentInterface";
+import Editor from "@tinymce/tinymce-vue";
+import { MYSIWYG_API_KEY } from "@/constants/wysiwyg";
 
 const comment = ref<CommentForm>({
   name: "",
