@@ -46,15 +46,15 @@
     <v-btn class="me-4" @click="submit">submit</v-btn>
     <v-btn @click="clear">clear</v-btn>
   </form>
-  <div v-for="t in allComments" :key="t">
+  <div v-for="t in allComments" :key="t.id">
     <h3>{{ t }}</h3>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useVuelidate } from "@vuelidate/core";
-import { alpha, alphaNum, between, maxLength, minLength, numeric, required } from "@vuelidate/validators";
+import { alpha, between, maxLength, minLength, numeric, required } from "@vuelidate/validators";
 import { CommentForm } from "@/models/commentInterface";
 import Editor from "@tinymce/tinymce-vue";
 import { MYSIWYG_API_KEY } from "@/constants/wysiwyg";
@@ -71,7 +71,7 @@ const comment = ref<CommentForm>({
   note: 1
 });
 
-const allComments = getMovieComment(movieId);
+const allComments = ref<CommentForm[]>([]);
 
 const rules = {
   name: { required, minLength: minLength(3), maxLength: maxLength(50), alpha },
@@ -86,14 +86,16 @@ const rules = {
 };
 const v$ = useVuelidate(rules, comment);
 
-function submit() {
+const submit = () => {
   v$.value.$touch();
   if (!v$.value.$invalid) {
     setMovieComment(comment.value);
+    allComments.value = getMovieComment(movieId);
+    clear();
   } else {
     console.log("Formulaire invalide");
   }
-}
+};
 
 const clear = () => {
   v$.value.$reset();
@@ -105,15 +107,8 @@ const clear = () => {
   };
 };
 
-watch(
-  () => comment.value,
-  () => {
-    const allComments = getMovieComment(movieId);
-    console.log(allComments);
-  }
-);
 onMounted(() => {
-  getMovieComment(movieId);
+  allComments.value = getMovieComment(movieId);
 });
 </script>
 

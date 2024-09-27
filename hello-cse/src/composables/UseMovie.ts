@@ -1,8 +1,6 @@
 import { CommentForm } from "@/models/commentInterface";
-import { movieDetail } from "@/models/movieDetailInterface";
 import { useMovieService } from "@/services/UseMovieService";
 import { useMovieStore } from "@/stores/movieStore";
-import { useMovieId } from "./UseMovieId";
 
 export const useMovie = () => {
   const { topMovies, upComingMovies, movieDetails } = useMovieService();
@@ -36,6 +34,7 @@ export const useMovie = () => {
 
   const getMovieComment = (movieId: string) => {
     const comments = JSON.parse(localStorage.getItem(`comments_${movieId}`) || "[]");
+    console.log(comments, "comments");
     return comments;
   };
 
