@@ -18,7 +18,6 @@
         v-model="comment.commentPart"
         @blur="v$.commentPart.$touch"
         @input="v$.commentPart.$touch"
-        rules=""
         :init="{
           height: 500,
           menubar: false,
@@ -26,7 +25,7 @@
           toolbar:
             'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat | code'
         }"
-      ></editor>
+      />
       <div v-if="v$.commentPart.$error" class="error-message">
         {{ v$.commentPart.$errors[0].$message }}
       </div>
@@ -46,13 +45,11 @@
     <v-btn class="me-4" @click="submit">submit</v-btn>
     <v-btn @click="clear">clear</v-btn>
   </form>
-  <div v-for="t in allComments" :key="t.id">
-    <h3>{{ t }}</h3>
-  </div>
+  <get-all-comments :comments="allComments"></get-all-comments>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { alpha, between, maxLength, minLength, numeric, required } from "@vuelidate/validators";
 import { CommentForm } from "@/models/commentInterface";
@@ -60,15 +57,17 @@ import Editor from "@tinymce/tinymce-vue";
 import { MYSIWYG_API_KEY } from "@/constants/wysiwyg";
 import { useMovieId } from "@/composables/UseMovieId";
 import { useMovie } from "@/composables/UseMovie";
+import dayjs from "dayjs";
+import getAllComments from "@/components/comments/get-all-comments.vue";
 
 const movieId = useMovieId();
 const { setMovieComment, getMovieComment } = useMovie();
 
 const comment = ref<CommentForm>({
-  id: movieId,
   name: "",
   commentPart: "",
-  note: 1
+  note: 1,
+  dateCreation: dayjs().toISOString()
 });
 
 const allComments = ref<CommentForm[]>([]);
@@ -100,10 +99,10 @@ const submit = () => {
 const clear = () => {
   v$.value.$reset();
   comment.value = {
-    id: movieId,
     name: "",
     commentPart: "",
-    note: 1
+    note: 1,
+    dateCreation: new Date().toISOString()
   };
 };
 

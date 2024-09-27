@@ -1,10 +1,13 @@
 import { CommentForm } from "@/models/commentInterface";
 import { useMovieService } from "@/services/UseMovieService";
 import { useMovieStore } from "@/stores/movieStore";
+import { useMovieId } from "./UseMovieId";
 
 export const useMovie = () => {
   const { topMovies, upComingMovies, movieDetails } = useMovieService();
   const { setTopMovies, setUpComingMovies, setMovieFilterByName, setMovieDetails } = useMovieStore();
+
+  const movieId = useMovieId();
 
   const getTopMovies = async () => {
     const topMoviesArray = await topMovies();
@@ -26,16 +29,19 @@ export const useMovie = () => {
   };
 
   const setMovieComment = (comment: CommentForm) => {
-    const existingComments = JSON.parse(localStorage.getItem(`comments_${comment.id}`) || "[]");
+    const existingComments = JSON.parse(localStorage.getItem(`comments_${movieId}`) || "[]");
     existingComments.push(comment);
-    localStorage.setItem(`comments_${comment.id}`, JSON.stringify(existingComments));
-    console.log("ici");
+    localStorage.setItem(`comments_${movieId}`, JSON.stringify(existingComments));
   };
 
   const getMovieComment = (movieId: string) => {
     const comments = JSON.parse(localStorage.getItem(`comments_${movieId}`) || "[]");
-    console.log(comments, "comments");
-    return comments;
+    const commentsSorted = comments.sort(
+      (a: CommentForm, b: CommentForm) => new Date(b.dateCreation).getTime() - new Date(a.dateCreation).getTime()
+    );
+    console.log(commentsSorted, "commentsSorted");
+
+    return commentsSorted;
   };
 
   return { getTopMovies, getUpCommingMovies, getMovieDetail, setSearchFilters, setMovieComment, getMovieComment };
