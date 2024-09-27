@@ -1,6 +1,8 @@
+import { CommentForm } from "@/models/commentInterface";
 import { movieDetail } from "@/models/movieDetailInterface";
 import { useMovieService } from "@/services/UseMovieService";
 import { useMovieStore } from "@/stores/movieStore";
+import { useMovieId } from "./UseMovieId";
 
 export const useMovie = () => {
   const { topMovies, upComingMovies, movieDetails } = useMovieService();
@@ -25,5 +27,17 @@ export const useMovie = () => {
     setMovieDetails(details);
   };
 
-  return { getTopMovies, getUpCommingMovies, getMovieDetail, setSearchFilters };
+  const setMovieComment = (comment: CommentForm) => {
+    const existingComments = JSON.parse(localStorage.getItem(`comments_${comment.id}`) || "[]");
+    existingComments.push(comment);
+    localStorage.setItem(`comments_${comment.id}`, JSON.stringify(existingComments));
+    console.log("ici");
+  };
+
+  const getMovieComment = (movieId: string) => {
+    const comments = JSON.parse(localStorage.getItem(`comments_${movieId}`) || "[]");
+    return comments;
+  };
+
+  return { getTopMovies, getUpCommingMovies, getMovieDetail, setSearchFilters, setMovieComment, getMovieComment };
 };

@@ -43,25 +43,20 @@
       </template>
     </v-list>
   </v-card>
-  <espace-commentaire></espace-commentaire>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useRoute } from "vue-router";
 import { useMovie } from "@/composables/UseMovie";
 import { storeToRefs } from "pinia";
 import { useMovieStore } from "@/stores/movieStore";
-import espaceCommentaire from "../espace-commentaire.vue";
+import { useMovieId } from "@/composables/UseMovieId";
 
 const { getMovieDetail } = useMovie();
 const { movieDetails } = storeToRefs(useMovieStore());
-
-const route = useRoute();
+const movieId = useMovieId();
 
 onMounted(async () => {
-  const movieId = String(route.params.id);
-  console.log(typeof movieId);
   await getMovieDetail(movieId);
 });
 </script>
