@@ -22,6 +22,12 @@ export const useMovieStore = defineStore("movieStore", () => {
     return top5Movies;
   });
 
+  const listTop4Actors = computed(() => {
+    const castingSorted = movieDetails.value?.cast.sort((a, b) => b.popularity - a.popularity);
+    const top4Actors = castingSorted?.slice(0, 4);
+    return top4Actors;
+  });
+
   //setter
   const setTopMovies = (newMovies: topMovieInterface[]) => {
     topMovies.value = newMovies;
@@ -45,6 +51,7 @@ export const useMovieStore = defineStore("movieStore", () => {
     getFilteredMovies,
     getTopFiveMovies,
     movieDetails,
+    listTop4Actors,
     setTopMovies,
     setUpComingMovies,
     setMovieFilterByName,

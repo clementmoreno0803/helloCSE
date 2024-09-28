@@ -1,29 +1,13 @@
 # hello-cse
 
-## Project setup
-```
-npm install
-```
+## A faire
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# Créer variable + mixins scss
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# Relancer la recherche à chaque retour sur la page home
 
-### Run your unit tests
-```
-npm run test:unit
-```
+# Tests Unitaires
 
-### Lints and fixes files
-```
-npm run lint
-```
+# Créer une section nouveautés ou populaire ..
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# responsivité

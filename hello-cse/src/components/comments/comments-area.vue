@@ -1,5 +1,6 @@
 <template>
-  <form>
+  <h2>Espace commentaire</h2>
+  <form class="comments-area">
     <v-text-field
       v-model="comment.name"
       :counter="10"
@@ -12,14 +13,14 @@
       {{ v$.name.$errors[0].$message }}
     </div>
 
-    <div>
+    <div class="comments-area__comment-editor">
       <editor
         :api-key="MYSIWYG_API_KEY"
         v-model="comment.commentPart"
         @blur="v$.commentPart.$touch"
         @input="v$.commentPart.$touch"
         :init="{
-          height: 500,
+          height: 300,
           menubar: false,
           plugins: 'lists link image code',
           toolbar:
@@ -111,9 +112,19 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .error-message {
   font-size: 0.8rem;
   color: red;
+}
+::v-deep .v-text-field {
+  width: 30%;
+  border-radius: 0.775rem;
+}
+.comments-area {
+  width: 50vw;
+  &__comment-editor {
+    height: 300px;
+  }
 }
 </style>

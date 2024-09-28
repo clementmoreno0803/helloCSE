@@ -1,10 +1,15 @@
 <template>
   <div>
     <div v-if="getTopFiveMovies.length == 0">
-      <v-skeleton-loader :elevation="3" type="card" class="top-movie-card__carousel-container"></v-skeleton-loader>
+      <v-skeleton-loader
+        :elevation="3"
+        color="rgb(28,28,28)"
+        type="card"
+        class="top-movie-card__carousel-container"
+      ></v-skeleton-loader>
     </div>
     <div class="top-movie-card" v-else>
-      <h2 class="top-movie-card__title">Top 5 Movies</h2>
+      <h2 class="top-movie-card__title">Les 5 meilleurs film du moment</h2>
       <v-carousel hide-delimiter-background :show-arrows="false" class="top-movie-card__carousel-container">
         <v-carousel-item v-for="movie in getTopFiveMovies" :key="movie.id" :src="movie.backdrop_path" cover>
           <div class="top-movie-card__carousel-item">
@@ -81,20 +86,8 @@ onMounted(async () => {
 
 .top-movie-card {
   position: relative;
-  &__title {
-    width: fit-content;
-    position: absolute;
-    color: white;
-    z-index: 9999;
-    font-size: 1.5rem;
-    left: 2rem;
-    top: 2rem;
-    text-transform: uppercase;
-    font-family: "Poppins";
-    font-weight: 600;
-  }
   &__carousel-container {
-    max-width: 60vw;
+    max-width: 45vw;
     max-height: 20rem;
     border-radius: 12px;
     position: relative;

@@ -1,16 +1,11 @@
 <template>
-  <nav>
-    <h1>NETFLIX</h1>
-    <search-input></search-input>
-  </nav>
-  <router-view />
+  <Header />
 </template>
 
 <script setup lang="ts">
-import searchInput from "./components/search-input.vue";
+import Header from "@/layout/HeaderLayout.vue";
 </script>
 
-<style scoped></style>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -18,22 +13,17 @@ import searchInput from "./components/search-input.vue";
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: #171717;
+  background: rgb(23, 23, 23);
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
-nav {
-  padding: 30px;
-  display: flex;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+h2 {
+  font-family: "Poppins";
+  font-weight: 400;
+  text-align: left;
+  color: white;
+  margin: 3vh 0;
 }
 </style>
