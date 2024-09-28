@@ -39,8 +39,6 @@ export const useMovie = () => {
     const commentsSorted = comments.sort(
       (a: CommentForm, b: CommentForm) => new Date(b.dateCreation).getTime() - new Date(a.dateCreation).getTime()
     );
-    console.log(commentsSorted, "commentsSorted");
-
     return commentsSorted;
   };
 

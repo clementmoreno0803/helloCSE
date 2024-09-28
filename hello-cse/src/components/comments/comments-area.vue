@@ -1,52 +1,57 @@
 <template>
-  <h2>Espace commentaire</h2>
-  <form class="comments-area">
-    <v-text-field
-      v-model="comment.name"
-      :counter="10"
-      label="Nom d'utilisateur"
-      required
-      @blur="v$.name.$touch"
-      @input="v$.name.$touch"
-    ></v-text-field>
-    <div v-if="v$.name.$error" class="error-message">
-      {{ v$.name.$errors[0].$message }}
-    </div>
+  <div class="comments-area">
+    <form>
+      <div class="comments-area__informations">
+        <v-text-field
+          v-model="comment.name"
+          :counter="10"
+          label="Nom d'utilisateur"
+          required
+          @blur="v$.name.$touch"
+          @input="v$.name.$touch"
+        ></v-text-field>
+        <div v-if="v$.name.$error" class="error-message">
+          {{ v$.name.$errors[0].$message }}
+        </div>
 
-    <div class="comments-area__comment-editor">
-      <editor
-        :api-key="MYSIWYG_API_KEY"
-        v-model="comment.commentPart"
-        @blur="v$.commentPart.$touch"
-        @input="v$.commentPart.$touch"
-        :init="{
-          height: 300,
-          menubar: false,
-          plugins: 'lists link image code',
-          toolbar:
-            'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat | code'
-        }"
-      />
-      <div v-if="v$.commentPart.$error" class="error-message">
-        {{ v$.commentPart.$errors[0].$message }}
+        <v-text-field
+          v-model="comment.note"
+          label="Note"
+          required
+          @blur="v$.note.$touch"
+          @input="v$.note.$touch"
+        ></v-text-field>
+        <div v-if="v$.note.$error" class="error-message">
+          {{ v$.note.$errors[0].$message }}
+        </div>
       </div>
-    </div>
 
-    <v-text-field
-      v-model="comment.note"
-      label="Note"
-      required
-      @blur="v$.note.$touch"
-      @input="v$.note.$touch"
-    ></v-text-field>
-    <div v-if="v$.note.$error" class="error-message">
-      {{ v$.note.$errors[0].$message }}
-    </div>
-
-    <v-btn class="me-4" @click="submit">submit</v-btn>
-    <v-btn @click="clear">clear</v-btn>
-  </form>
-  <get-all-comments :comments="allComments"></get-all-comments>
+      <div class="comments-area__comment-editor">
+        <editor
+          :api-key="MYSIWYG_API_KEY"
+          v-model="comment.commentPart"
+          placeholder="Ajoutez un commentaire..."
+          @blur="v$.commentPart.$touch"
+          @input="v$.commentPart.$touch"
+          :init="{
+            height: 200,
+            menubar: false,
+            plugins: 'lists link image code',
+            toolbar:
+              'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat | code'
+          }"
+        />
+        <div v-if="v$.commentPart.$error" class="error-message">
+          {{ v$.commentPart.$errors[0].$message }}
+        </div>
+        <div class="comments-area__submit-button-container">
+          <v-btn class="comments-area__submit-button" @click="submit">submit</v-btn>
+        </div>
+      </div>
+    </form>
+    <v-divider class="comments-area__divider" :thickness="3"></v-divider>
+    <get-all-comments :comments="allComments"></get-all-comments>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -77,7 +82,7 @@ const rules = {
   name: { required, minLength: minLength(3), maxLength: maxLength(50), alpha },
   commentPart: {
     required,
-    // Du fait que le Wysiwyg créer des balises HTML en sortie ce qui fait qu'on
+    //Le Wysiwyg créer des balises HTML en sortie ce qui fait qu'on
     //est déjà au dessus de 3 caractères avant de saisir quoi que ce soit
     minLength: minLength(3),
     maxLength: maxLength(500)
@@ -118,13 +123,33 @@ onMounted(() => {
   color: red;
 }
 ::v-deep .v-text-field {
-  width: 30%;
+  width: 50%;
   border-radius: 0.775rem;
 }
 .comments-area {
-  width: 50vw;
-  &__comment-editor {
-    height: 300px;
+  width: 93vw;
+  padding: 3vh 2vw;
+  margin: 5vh 0;
+  background: rgb(23, 23, 23);
+  border-radius: 0.5rem;
+  &__informations {
+    display: flex;
+    gap: 1rem;
+  }
+  &__submit-button-container {
+    position: relative;
+    bottom: 80px;
+  }
+  &__submit-button {
+    position: absolute;
+    right: 1rem;
+    border-radius: 0.5rem;
+    background: rgb(255, 145, 105);
+    color: white;
+    font-weight: bold;
+  }
+  &__divider {
+    margin: 5vh 0;
   }
 }
 </style>

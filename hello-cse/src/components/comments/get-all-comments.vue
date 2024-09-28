@@ -1,6 +1,10 @@
 <template>
   <div>
-    <v-list lines="three">
+    <div class="get-all-comments__title">
+      <h3>Commentaires:</h3>
+      <span class="get-all-comments__number-of-comments">{{ props.comments.length }}</span>
+    </div>
+    <v-list class="get-all-comments__list-of-comments" lines="three">
       <v-list-item v-for="comment in props.comments" :key="comment.name">
         <h3>Nom complet: {{ comment.name }}</h3>
         <p>Date de publication: {{ dayjs(comment.dateCreation).format("DD/MM/YYYY") }}</p>
@@ -19,13 +23,38 @@ import { defineProps } from "vue";
 const props = defineProps<{
   comments: CommentForm[];
 }>();
+
+const getInitials = (fullName) => {
+  const nameArray = fullName.trim().split(" ");
+  if (nameArray.length > 1) {
+    return nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
+  } else {
+    return nameArray[0][0].toUpperCase();
+  }
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ::v-deep .v-list-item {
-  border: 1px solid black;
-  width: 50rem;
-  margin-bottom: 1rem;
-  border-radius: 12px;
+  background: transparent;
+}
+.get-all-comments {
+  display: flex;
+  justify-content: flex-start;
+  &__title {
+    display: flex;
+    gap: 1rem;
+  }
+  &__number-of-comments {
+    background: rgb(255, 145, 105);
+    border-radius: 1rem;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+  }
+  &__list-of-comments {
+    background: transparent;
+    color: white;
+  }
 }
 </style>

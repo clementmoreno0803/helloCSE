@@ -9,6 +9,7 @@ export const useMovieStore = defineStore("movieStore", () => {
   const upComingMovies = ref<upComingMoviesInterface[]>([]);
   const movieDetails = ref<movieDetail>();
   const inputFilter = ref<string>("");
+  const isLoaded = ref<boolean>(false);
 
   //getter
 
@@ -34,6 +35,7 @@ export const useMovieStore = defineStore("movieStore", () => {
   };
   const setUpComingMovies = (newMovies: upComingMoviesInterface[]) => {
     upComingMovies.value = newMovies;
+    isLoaded.value = true;
   };
   const setMovieFilterByName = (input: string) => {
     inputFilter.value = input;
@@ -52,6 +54,7 @@ export const useMovieStore = defineStore("movieStore", () => {
     getTopFiveMovies,
     movieDetails,
     listTop4Actors,
+    isLoaded,
     setTopMovies,
     setUpComingMovies,
     setMovieFilterByName,

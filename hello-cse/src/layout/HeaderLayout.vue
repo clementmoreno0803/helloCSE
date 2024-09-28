@@ -19,10 +19,11 @@ nav {
   z-index: 99999;
   padding: 30px;
   display: flex;
-  background: rgb(17, 17, 17);
+  background: rgb(23, 23, 23);
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: white;
+    opacity: 0.6;
     text-decoration: none;
   }
 }

@@ -47,21 +47,20 @@
 </template>
 
 <script setup lang="ts">
-// import { useMovie } from "@/composables/UseMovie";
+import { useMovie } from "@/composables/UseMovie";
 import { useMovieService } from "@/services/UseMovieService";
 import { useMovieStore } from "@/stores/movieStore";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import dayjs from "dayjs";
 
-// const { getUpCommingMovies } = useMovie();
-const { upComingMovies, getFilteredMovies } = storeToRefs(useMovieStore());
+const { upComingMovies, getFilteredMovies, isLoaded } = storeToRefs(useMovieStore());
+const { getUpCommingMovies } = useMovie();
 const router = useRouter();
 
-const page = ref(1);
+const page = ref(2);
 const hasMore = ref(true);
-const isLoaded = ref(false);
 
 const goToDetail = (id: number) => {
   router.push({ name: "MovieDetail", params: { id } });
@@ -84,9 +83,8 @@ const load = async ({ done }) => {
 
   done("ok");
 };
-setTimeout(() => {
-  isLoaded.value = true;
-}, 5000);
+
+onMounted(() => getUpCommingMovies(1));
 </script>
 
 <style lang="scss" scoped>
