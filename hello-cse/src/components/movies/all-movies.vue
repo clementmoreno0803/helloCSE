@@ -1,15 +1,22 @@
 <template>
   <div>
-    <v-skeleton-loader
-      v-if="!isLoaded"
-      :elevation="3"
-      color="rgb(28,28,28)"
-      type="card"
-      class="top-movie-card__carousel-container"
-    ></v-skeleton-loader>
-    <div v-else>
-      <h2>Les nouveaux arrivants</h2>
-      <div class="all-movies">
+    <div>
+      <v-skeleton-loader
+        v-if="!isLoaded"
+        :elevation="3"
+        color="rgb(28,28,28)"
+        type="paragraph"
+        class="skeleton-title"
+      ></v-skeleton-loader>
+      <h2 v-else>Les nouveaux arrivants</h2>
+      <v-skeleton-loader
+        v-if="!isLoaded"
+        :elevation="3"
+        color="rgb(28,28,28)"
+        type="card"
+        class="top-movie-card__carousel-container"
+      ></v-skeleton-loader>
+      <div class="all-movies" v-else>
         <v-infinite-scroll class="all-movies__infinite-scroll" :height="1000" :items="getFilteredMovies" :onLoad="load">
           <div v-for="movie in getFilteredMovies" :key="movie.id">
             <v-card
@@ -59,65 +66,89 @@ const { upComingMovies, getFilteredMovies, isLoaded } = storeToRefs(useMovieStor
 const { getUpCommingMovies } = useMovie();
 const router = useRouter();
 
-const page = ref(2);
-const hasMore = ref(true);
-
 const goToDetail = (id: number) => {
   router.push({ name: "MovieDetail", params: { id } });
 };
 
+const hasMore = ref(true);
+const isLoading = ref(false);
+
+const page = ref(2);
+async function api() {
+  // Retourne une promesse avec les films
+  return useMovieService().upComingMovies(page.value);
+}
+
+// Fonction de chargement des nouveaux éléments
 const load = async ({ done }) => {
-  if (!hasMore.value) {
-    done();
+  if (!hasMore.value || isLoading.value) {
+    done("ok");
     return;
   }
 
-  const newMovies = await useMovieService().upComingMovies(page.value);
+  isLoading.value = true;
 
-  if (newMovies.length > 0) {
-    upComingMovies.value.push(...newMovies);
-    page.value++;
-  } else {
-    hasMore.value = false;
+  try {
+    // Appel à l'API pour récupérer les films
+    const newMovies = await api();
+
+    // Vérifiez s'il y a des nouveaux films
+    if (newMovies.length > 0) {
+      upComingMovies.value.push(...newMovies); // Mettez à jour votre store
+      page.value++; // Passez à la page suivante
+    } else {
+      hasMore.value = false; // Plus de films à charger
+    }
+
+    done("ok");
+  } catch (error) {
+    console.error("Erreur lors du chargement des films :", error);
+    done("error");
+  } finally {
+    isLoading.value = false;
   }
-
-  done("ok");
 };
 
-onMounted(() => getUpCommingMovies(1));
+onMounted(() => {
+  getUpCommingMovies(1);
+});
 </script>
 
 <style lang="scss" scoped>
+.skeleton-title {
+  @include marginCenter(3vh);
+  width: 30%;
+}
 .all-movies {
   position: relative;
   &::after {
     content: "";
-    position: absolute;
-    top: 0;
+    @include absoluteTopLeft;
     width: 100%;
     background: linear-gradient(0deg, rgb(23, 23, 23, 0%) 0%, rgba(0, 0, 0, 1) 100%);
-    left: 0;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-top-left-radius: $border-rounded;
+    border-top-right-radius: $border-rounded;
     overflow: hidden;
-    z-index: 9999;
-    height: 150px;
+    z-index: $z-top;
+    height: 9.375rem;
+  }
+  &__carousel-container {
+    height: auto;
   }
   &__infinite-scroll {
-    display: flex;
-    flex-direction: row;
+    @include flexGap(2vw);
     flex-wrap: wrap;
-    gap: 2vw;
-    margin: 0 auto;
+    flex-direction: row;
+    @include marginCenter(0);
     justify-content: flex-start;
     position: relative;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-top-left-radius: $border-rounded;
+    border-top-right-radius: $border-rounded;
   }
   &__card-container {
     width: 14vw;
     height: 20rem;
-    border-radius: 12px;
+    border-radius: $border-rounded;
     object-fit: cover;
   }
   &__card-title {
@@ -126,15 +157,17 @@ onMounted(() => getUpCommingMovies(1));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: $gris-clair;
+    margin-top: 0.5rem;
   }
   &__description {
     display: flex;
     align-items: center;
     justify-content: center;
     p {
-      display: flex;
-      gap: 0.5rem;
+      @include flexGap(0.5rem);
       margin-left: 0.5rem;
+      color: $gris-clair;
     }
   }
 }

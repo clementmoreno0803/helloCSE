@@ -78,9 +78,9 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .movies-details {
   max-width: 95vw;
-  margin: 0 auto;
+  @include marginCenter(0);
   padding: 1rem;
-  background: rgb(28, 28, 28);
+  background: $background-black;
   color: white;
   &__container {
     display: flex;
@@ -88,7 +88,7 @@ onMounted(async () => {
     img {
       height: 500px;
       width: auto;
-      border-radius: 12px;
+      border-radius: $border-rounded;
     }
   }
   &__global-informations {
@@ -101,9 +101,8 @@ onMounted(async () => {
     flex-direction: column;
   }
   &__gender {
-    display: flex;
-    margin: 1rem 0;
-    gap: 1rem;
+    @include flexGap(1rem);
+    @include marginTopBottom(1rem);
     width: fit-content;
   }
   &__votes {
@@ -112,13 +111,13 @@ onMounted(async () => {
   }
   &__crew {
     display: flex;
-    background: #1c1c1c;
+    background: $background-black;
     color: white;
   }
   &__cast {
     display: flex;
-    flex-wrap: wrap;
-    background: #1c1c1c;
+    @include flexWrap;
+    background: $background-black;
     color: white;
 
     &--width {

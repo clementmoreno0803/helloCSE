@@ -4,12 +4,19 @@
       <h3>Commentaires:</h3>
       <span class="get-all-comments__number-of-comments">{{ props.comments.length }}</span>
     </div>
-    <v-list class="get-all-comments__list-of-comments" lines="three">
-      <v-list-item v-for="comment in props.comments" :key="comment.name">
-        <h3>Nom complet: {{ comment.name }}</h3>
-        <p>Date de publication: {{ dayjs(comment.dateCreation).format("DD/MM/YYYY") }}</p>
-        <h2>{{ comment.commentPart }}</h2>
-        <h2>{{ comment.note }}</h2>
+    <v-list class="get-all-comments__list-of-comments" lines="two">
+      <v-list-item v-for="comment in props.comments" :key="comment.name" :prepend-avatar="comment.profilPicture">
+        <div class="get-all-comments__comment-part">
+          <div class="get-all-comments__name">
+            <h3>{{ comment.name }}</h3>
+            <p>
+              <span :style="{ color: 'orange' }">{{ comment.note }}</span>
+              /10
+            </p>
+          </div>
+          <h4>{{ `Il y a ${getMinutesSincePublished(comment.dateCreation)} minutes` }}</h4>
+          <p>{{ comment.commentPart }}</p>
+        </div>
       </v-list-item>
     </v-list>
   </div>
@@ -24,12 +31,18 @@ const props = defineProps<{
   comments: CommentForm[];
 }>();
 
-const getInitials = (fullName) => {
-  const nameArray = fullName.trim().split(" ");
-  if (nameArray.length > 1) {
-    return nameArray[0][0].toUpperCase() + nameArray[1][0].toUpperCase();
+console.log(props.comments, "comments");
+
+const getMinutesSincePublished = (dateCreation: string | Date) => {
+  const now = dayjs();
+  const createdAt = dayjs(dateCreation);
+
+  if (now.diff(createdAt, "minute") < 60) {
+    return now.diff(createdAt, "minute");
+  } else if (now.diff(createdAt, "minute") > 60 && now.diff(createdAt, "minute") < 1440) {
+    return now.diff(createdAt, "hours");
   } else {
-    return nameArray[0][0].toUpperCase();
+    return now.diff(createdAt, "days");
   }
 };
 </script>
@@ -42,11 +55,15 @@ const getInitials = (fullName) => {
   display: flex;
   justify-content: flex-start;
   &__title {
-    display: flex;
-    gap: 1rem;
+    @include flexGap(1rem);
+  }
+  &__profil-picture {
+    width: 24px;
+    height: 24px;
+    border-radius: 25%;
   }
   &__number-of-comments {
-    background: rgb(255, 145, 105);
+    background: $orange;
     border-radius: 1rem;
     padding: 0 1rem;
     display: flex;
@@ -55,6 +72,11 @@ const getInitials = (fullName) => {
   &__list-of-comments {
     background: transparent;
     color: white;
+    text-align: left;
+  }
+  &__name {
+    @include flexGap(2rem);
+    align-items: center;
   }
 }
 </style>

@@ -12,18 +12,17 @@ import Header from "@/layout/HeaderLayout.vue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  background: rgb(23, 23, 23);
+  color: $gris-anthracite;
+  background: $background-black;
   margin: 0;
   padding: 0;
   min-height: 100vh;
 }
 
 h2 {
-  font-family: "Poppins";
-  font-weight: 400;
-  text-align: left;
-  color: white;
-  margin: 3vh 0;
+  @include title(3vh, 1.2rem);
+}
+h4 {
+  @include title(0, 0.7rem);
 }
 </style>

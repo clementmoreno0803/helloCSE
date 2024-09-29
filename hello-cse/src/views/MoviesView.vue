@@ -13,6 +13,6 @@ import allMovies from "@/components/movies/all-movies.vue";
 <style lang="scss" scoped>
 .home {
   width: 95vw;
-  margin: 0 auto;
+  @include marginCenter(0);
 }
 </style>

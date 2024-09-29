@@ -16,12 +16,12 @@ import searchInput from "@/components/search-input.vue";
 nav {
   position: sticky;
   top: 0;
-  z-index: 99999;
-  padding: 30px;
+  z-index: $z-top;
+  padding: 2rem;
   display: flex;
-  background: rgb(23, 23, 23);
+  background: $background-black;
   a {
-    font-weight: bold;
+    font-weight: $bold;
     color: white;
     opacity: 0.6;
     text-decoration: none;

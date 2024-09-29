@@ -1,0 +1,52 @@
+@import "_variables";
+
+@mixin absoluteTopLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin flexGap($gap) {
+  display: flex;
+  gap: $gap;
+}
+
+@mixin flexWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin marginCenter($height) {
+  margin: $height auto;
+}
+@mixin marginTopBottom($height) {
+  margin: $height 0;
+}
+
+@mixin title($margin, $font-size) {
+  font-family: $poppins;
+  font-weight: $normal;
+  text-align: left;
+  color: white;
+  @include marginTopBottom($margin);
+  font-size: $font-size;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint ==mobile {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==tablet {
+    @media (max-width: 900px) {
+      @content;
+    }
+  }
+  @else if $breakpoint ==desktop {
+    @media (min-width: 1200px) {
+        @content;
+      }
+  }
+}

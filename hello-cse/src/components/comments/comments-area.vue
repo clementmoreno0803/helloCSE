@@ -45,7 +45,7 @@
           {{ v$.commentPart.$errors[0].$message }}
         </div>
         <div class="comments-area__submit-button-container">
-          <v-btn class="comments-area__submit-button" @click="submit">submit</v-btn>
+          <v-btn class="comments-area__submit-button" @click="submitComment">submit</v-btn>
         </div>
       </div>
     </form>
@@ -70,30 +70,27 @@ const movieId = useMovieId();
 const { setMovieComment, getMovieComment } = useMovie();
 
 const comment = ref<CommentForm>({
+  profilPicture: "https://thispersondoesnotexist.com/",
   name: "",
   commentPart: "",
-  note: 1,
+  note: parseInt("1"),
   dateCreation: dayjs().toISOString()
 });
 
-const allComments = ref<CommentForm[]>([]);
-
-const rules = {
-  name: { required, minLength: minLength(3), maxLength: maxLength(50), alpha },
-  commentPart: {
-    required,
-    //Le Wysiwyg créer des balises HTML en sortie ce qui fait qu'on
-    //est déjà au dessus de 3 caractères avant de saisir quoi que ce soit
-    minLength: minLength(3),
-    maxLength: maxLength(500)
-  },
-  note: { required, numeric, between: between(1, 10) }
+const stripHtmlTags = (input: string) => {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = input;
+  return tempDiv.textContent || tempDiv.innerText || "";
 };
-const v$ = useVuelidate(rules, comment);
 
-const submit = () => {
+const submitComment = () => {
+  const cleanedComment = stripHtmlTags(comment.value.commentPart);
+  comment.value.commentPart = cleanedComment;
+
   v$.value.$touch();
   if (!v$.value.$invalid) {
+    console.log(comment.value, "comment");
+
     setMovieComment(comment.value);
     allComments.value = getMovieComment(movieId);
     clear();
@@ -102,12 +99,26 @@ const submit = () => {
   }
 };
 
+const allComments = ref<CommentForm[]>([]);
+
+const rules = {
+  name: { required, minLength: minLength(3), maxLength: maxLength(50), alpha },
+  commentPart: {
+    required,
+    minLength: minLength(3),
+    maxLength: maxLength(500)
+  },
+  note: { required, numeric, between: between(1, 10) }
+};
+const v$ = useVuelidate(rules, comment);
+
 const clear = () => {
   v$.value.$reset();
   comment.value = {
+    profilPicture: "https://thispersondoesnotexist.com/",
     name: "",
     commentPart: "",
-    note: 1,
+    note: parseInt("1"),
     dateCreation: new Date().toISOString()
   };
 };
@@ -129,12 +140,11 @@ onMounted(() => {
 .comments-area {
   width: 93vw;
   padding: 3vh 2vw;
-  margin: 5vh 0;
+  @include marginCenter(5vh);
   background: rgb(23, 23, 23);
   border-radius: 0.5rem;
   &__informations {
-    display: flex;
-    gap: 1rem;
+    @include flexGap(1rem);
   }
   &__submit-button-container {
     position: relative;
@@ -146,10 +156,10 @@ onMounted(() => {
     border-radius: 0.5rem;
     background: rgb(255, 145, 105);
     color: white;
-    font-weight: bold;
+    font-weight: $bold;
   }
   &__divider {
-    margin: 5vh 0;
+    @include marginCenter(5vh);
   }
 }
 </style>
