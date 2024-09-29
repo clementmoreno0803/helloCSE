@@ -13,6 +13,9 @@ import searchInput from "@/components/search-input.vue";
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  @include title(2vh, 1.2rem);
+}
 nav {
   position: sticky;
   top: 0;
@@ -20,6 +23,7 @@ nav {
   padding: 2rem;
   display: flex;
   background: $background-black;
+  align-items: center;
   a {
     font-weight: $bold;
     color: white;

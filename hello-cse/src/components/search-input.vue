@@ -23,7 +23,7 @@ const inputSearch = ref("");
 const widthInput = ref("2rem");
 
 const extandInput = () => {
-  widthInput.value = "20rem";
+  widthInput.value = "16rem";
 };
 
 const shrinkInput = () => {

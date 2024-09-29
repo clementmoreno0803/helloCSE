@@ -28,7 +28,7 @@
 
       <div class="comments-area__comment-editor">
         <editor
-          :api-key="MYSIWYG_API_KEY"
+          api-key="qudon0lyanblw4bg5e98i8nl5pvxixwssxqlhg4tipoxajad"
           v-model="comment.commentPart"
           placeholder="Ajoutez un commentaire..."
           @blur="v$.commentPart.$touch"
@@ -60,14 +60,15 @@ import { useVuelidate } from "@vuelidate/core";
 import { alpha, between, maxLength, minLength, numeric, required } from "@vuelidate/validators";
 import { CommentForm } from "@/models/commentInterface";
 import Editor from "@tinymce/tinymce-vue";
-import { MYSIWYG_API_KEY } from "@/constants/wysiwyg";
 import { useMovieId } from "@/composables/UseMovieId";
 import { useMovie } from "@/composables/UseMovie";
 import dayjs from "dayjs";
 import getAllComments from "@/components/comments/get-all-comments.vue";
 
-const movieId = useMovieId();
 const { setMovieComment, getMovieComment } = useMovie();
+
+const movieId = useMovieId();
+const allComments = ref<CommentForm[]>([]);
 
 const comment = ref<CommentForm>({
   profilPicture: "https://thispersondoesnotexist.com/",
@@ -98,8 +99,6 @@ const submitComment = () => {
     console.log("Formulaire invalide");
   }
 };
-
-const allComments = ref<CommentForm[]>([]);
 
 const rules = {
   name: { required, minLength: minLength(3), maxLength: maxLength(50), alpha },
