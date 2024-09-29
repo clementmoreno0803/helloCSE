@@ -33,20 +33,84 @@
 }
 
 @mixin responsive($breakpoint) {
-  @if $breakpoint ==mobile {
+  @if $breakpoint == "mobile" {
     @media (max-width: 600px) {
       @content;
     }
   }
 
-  @else if $breakpoint ==tablet {
-    @media (max-width: 900px) {
+  @else if $breakpoint == "tablet" {
+    @media (min-width: 601px) and (max-width: 900px) {
       @content;
     }
   }
-  @else if $breakpoint ==desktop {
-    @media (min-width: 1200px) {
+  @else if $breakpoint == "desktop" {
+    @media (min-width: 901px) {
         @content;
       }
   }
 }
+
+//commun style
+
+  //all movies
+@mixin __infinite-scroll($justify-content){
+@include flexGap(2vw);
+  flex-wrap: wrap;
+  flex-direction: row;
+  @include marginCenter(0);
+  justify-content: $justify-content;
+  position: relative;
+  border-top-left-radius: $border-rounded;
+  border-top-right-radius: $border-rounded;
+}
+
+@mixin __card-container{
+  height: 20rem;
+  border-radius: $border-rounded;
+  object-fit: cover;
+}
+
+@mixin __card-title {
+cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $gris-clair;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+  // movie-detail
+  @mixin __container($direction) {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: $direction;
+  }
+  @mixin __description($width){
+    max-width: $width;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+  @mixin __crew {
+    display: flex;
+    background: $background-black;
+    color: white;
+  }
+  @mixin __cast{
+    display: flex;
+    background: $background-black;
+    color: white;
+    flex-direction: row;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // caroussel
+
+  @mixin _carousel-container{
+    max-height: 20rem;
+    border-radius: $border-rounded;
+    position: relative;
+  }

@@ -83,8 +83,15 @@ onMounted(async () => {
   background: $background-black;
   color: white;
   &__container {
-    display: flex;
-    justify-content: flex-start;
+    @include responsive("mobile") {
+      @include __container(column);
+    }
+    @include responsive("tablet") {
+      @include __container(column);
+    }
+    @include responsive("desktop") {
+      @include __container(row);
+    }
     img {
       height: 500px;
       width: auto;
@@ -92,13 +99,26 @@ onMounted(async () => {
     }
   }
   &__global-informations {
-    margin: 2rem 0 0 5vw;
+    @include responsive("mobile") {
+      margin: 0;
+    }
+    @include responsive("tablet") {
+      margin: 0;
+    }
+    @include responsive("desktop") {
+      margin: 2rem 0 0 5vw;
+    }
   }
   &__description {
-    max-width: 30vw;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+    @include responsive("mobile") {
+      @include __description(90vw);
+    }
+    @include responsive("tablet") {
+      @include __description(90vw);
+    }
+    @include responsive("desktop") {
+      @include __description(30vw);
+    }
   }
   &__gender {
     @include flexGap(1rem);
@@ -110,18 +130,49 @@ onMounted(async () => {
     max-width: 20rem;
   }
   &__crew {
-    display: flex;
-    background: $background-black;
-    color: white;
+    @include responsive("mobile") {
+      @include __crew;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    @include responsive("tablet") {
+      @include __crew;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    @include responsive("desktop") {
+      @include __crew;
+    }
   }
   &__cast {
-    display: flex;
-    @include flexWrap;
-    background: $background-black;
-    color: white;
+    @include responsive("mobile") {
+      @include __cast;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    @include responsive("tablet") {
+      @include __cast;
+      flex-wrap: wrap;
+    }
+    @include responsive("desktop") {
+      @include __cast;
+      flex-wrap: wrap;
+    }
 
     &--width {
-      width: calc(100% / 4);
+      @include responsive("mobile") {
+        @include __cast;
+        flex-wrap: nowrap;
+        width: calc(100% / 2);
+      }
+      @include responsive("tablet") {
+        @include __cast;
+        width: calc(100% / 4);
+      }
+      @include responsive("desktop") {
+        @include __cast;
+        width: calc(100% / 4);
+      }
     }
   }
 }

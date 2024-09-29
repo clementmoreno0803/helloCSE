@@ -116,7 +116,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .skeleton-title {
-  @include marginCenter(3vh);
+  @include marginTopBottom(3vh);
   width: 30%;
 }
 .all-movies {
@@ -136,29 +136,43 @@ onMounted(() => {
     height: auto;
   }
   &__infinite-scroll {
-    @include flexGap(2vw);
-    flex-wrap: wrap;
-    flex-direction: row;
-    @include marginCenter(0);
-    justify-content: flex-start;
-    position: relative;
-    border-top-left-radius: $border-rounded;
-    border-top-right-radius: $border-rounded;
+    @include responsive("mobile") {
+      @include __infinite-scroll(space-around);
+    }
+    @include responsive("tablet") {
+      @include __infinite-scroll(space-around);
+    }
+    @include responsive("desktop") {
+      @include __infinite-scroll(lex-start);
+    }
   }
   &__card-container {
-    width: 14vw;
-    height: 20rem;
-    border-radius: $border-rounded;
-    object-fit: cover;
+    @include responsive("mobile") {
+      width: 45vw;
+      @include __card-container;
+    }
+    @include responsive("tablet") {
+      width: 22vw;
+      @include __card-container;
+    }
+    @include responsive("desktop") {
+      width: 14vw;
+      @include __card-container;
+    }
   }
   &__card-title {
-    max-width: 14vw;
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: $gris-clair;
-    margin-top: 0.5rem;
+    @include responsive("mobile") {
+      width: 45vw;
+      @include __card-title;
+    }
+    @include responsive("tablet") {
+      width: 22vw;
+      @include __card-title;
+    }
+    @include responsive("desktop") {
+      width: 14vw;
+      @include __card-title;
+    }
   }
   &__description {
     display: flex;

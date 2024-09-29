@@ -98,10 +98,18 @@ onMounted(async () => {
     margin-bottom: 3vh;
   }
   &__carousel-container {
-    max-width: 45vw;
-    max-height: 20rem;
-    border-radius: $border-rounded;
-    position: relative;
+    @include responsive("mobile") {
+      @include _carousel-container;
+      max-width: 95vw;
+    }
+    @include responsive("tablet") {
+      @include _carousel-container;
+      max-width: 45vw;
+    }
+    @include responsive("desktop") {
+      @include _carousel-container;
+      max-width: 45vw;
+    }
   }
   &__carousel-item {
     display: flex;

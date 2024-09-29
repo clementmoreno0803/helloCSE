@@ -138,7 +138,7 @@ onMounted(() => {
   border-radius: 0.775rem;
 }
 .comments-area {
-  width: 93vw;
+  width: calc(95vw - 2rem);
   padding: 3vh 2vw;
   @include marginCenter(5vh);
   background: rgb(23, 23, 23);
