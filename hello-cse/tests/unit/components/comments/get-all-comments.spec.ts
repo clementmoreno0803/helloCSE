@@ -39,9 +39,9 @@ describe('GetAllComments', () => {
     const wrapper = generateWrapper()
 
     const minutesSincePublished = wrapper.vm.getMinutesSincePublished(mockComments[0].dateCreation);
-    expect(minutesSincePublished).toBe(5); // Should be 5 minutes
+    expect(minutesSincePublished).toBe(5);
 
     const hoursSincePublished = wrapper.vm.getMinutesSincePublished(mockComments[1].dateCreation);
-    expect(hoursSincePublished).toBe(2); // Should return hours for 2 hours ago
+    expect(hoursSincePublished).toBe(2);
   });
 });

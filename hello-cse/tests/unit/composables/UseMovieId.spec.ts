@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { useRoute } from "vue-router";
-import { useMovieId } from "@/composables/UseMovieId"; // Importez useRoute
+import { useMovieId } from "@/composables/UseMovieId"
 
 // Mock de useRoute
 vi.mock("vue-router", () => ({
@@ -9,7 +9,7 @@ vi.mock("vue-router", () => ({
 
 describe("useMovieId", () => {
   it("should return the movie ID from route params", () => {
-    const mockMovieId = "123"; // ID de film simulé
+    const mockMovieId = "123";
     (useRoute as vi.Mock).mockReturnValue({
       params: { id: mockMovieId },
     });
@@ -26,6 +26,6 @@ describe("useMovieId", () => {
 
     const movieId = useMovieId();
 
-    expect(movieId).toBe("undefined"); // Notez que ici, il va renvoyer "undefined" en tant que string
+    expect(movieId).toBe("undefined");
   });
 });

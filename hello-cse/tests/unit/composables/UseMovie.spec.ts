@@ -7,7 +7,7 @@ import {  useRoute } from "vue-router";
 import { mockMovieDetail } from "../fixtures/mockDetailsMovie.mock";
 import { mockComments } from "../fixtures/mockComments.mock";
 
-// mock service
+// mock services
 const mockMovieService = {
   topMovies: vi.fn().mockResolvedValueOnce(mockTopMovies),
   upComingMovies: vi.fn().mockResolvedValue(mockMovies),
@@ -36,12 +36,10 @@ vi.mock("vue-router", () => ({
 }));
 
 beforeEach(() => {
-  // Mock de useRoute pour retourner l'ID du film
   (useRoute as vi.Mock).mockReturnValue({
     params: { movieId: "123" },
   });
 
-  // Mock de localStorage
   global.localStorage = {
     getItem: vi.fn(),
     setItem: vi.fn(),
@@ -76,21 +74,27 @@ describe('useMovie composable', () => {
 
   it('should add a new comment to localStorage for a given movie ID', () => {
     const mockMovieId = "123";
+    const mockComment = mockComments;
+
     (localStorage.getItem as vi.Mock).mockReturnValueOnce("[]");
 
-    const test = useMovie().setMovieComment(mockComments);
-    console.log(test);
+    const { setMovieComment } = useMovie();
+    setMovieComment(mockMovieId, mockComment);
+
     expect(localStorage.getItem).toHaveBeenCalledWith(`comments_${mockMovieId}`);
 
-    // Clean up: Restore spies after the test
-    getItemSpy.mockRestore();
-    setItemSpy.mockRestore();
+    (localStorage.getItem as vi.Mock).mockRestore();
+    (localStorage.setItem as vi.Mock).mockRestore();
   });
-  //
-  // it('should retrieve and sort comments from localStorage', () => {
-  //   localStorage.setItem('comments_1', JSON.stringify(mockComments));
-  //
-  //   const sortedComments = getMovieComment('1');
-  //   expect(sortedComments[0].name).toBe('User 1'); // Sorted by date in descending order
-  // });//
+
+  it('should retrieve and sort comments from localStorage', () => {
+    localStorage.setItem('comments_1', JSON.stringify([
+      {id: 1, name: 'User 1', commentPart: 'Comment 1', dateCreation: '2023-09-28T10:00:00Z' },
+      {id: 2, name: 'User 2', commentPart: 'Comment 2', dateCreation: '2023-09-27T12:00:00Z' }
+    ]));
+
+    const sortedComments = useMovie().getMovieComment('1');
+    console.log(sortedComments);
+    expect(sortedComments[0].name).toBe('User 1'); // Sorted by date in descending order
+  });//
 });

@@ -1,4 +1,3 @@
-// vite.config.ts
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';

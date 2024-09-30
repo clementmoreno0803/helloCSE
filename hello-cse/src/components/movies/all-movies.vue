@@ -90,10 +90,10 @@ const load = async ({ done }) => {
     const newMovies = await api();
 
     if (newMovies.length > 0) {
-      upComingMovies.value.push(...newMovies); // Mettez à jour votre store
-      page.value++; // Passez à la page suivante
+      upComingMovies.value.push(...newMovies);
+      page.value++;
     } else {
-      hasMore.value = false; // Plus de films à charger
+      hasMore.value = false;
     }
 
     done("ok");

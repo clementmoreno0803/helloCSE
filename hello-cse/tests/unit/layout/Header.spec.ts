@@ -1,8 +1,6 @@
-// HeaderComponent.spec.ts
 import { mount, shallowMount } from "@vue/test-utils";
 import { createRouter, createWebHistory } from 'vue-router';
 import { describe, it, expect } from 'vitest';
-import { createApp } from 'vue';
 import HeaderLayout from "@/layout/HeaderLayout.vue";
 import { createPinia, setActivePinia } from "pinia";
 

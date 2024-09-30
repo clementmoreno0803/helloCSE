@@ -1,14 +1,11 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
-import TopMovieCard from '@/components/movies/TopMovieCard.vue'; // Le chemin vers votre composant
 import { createTestingPinia } from '@pinia/testing';
-import { useMovieStore } from '@/stores/movieStore'; // Le chemin vers votre store
-import { useRouter, useRoute, createRouter, createWebHistory } from "vue-router";
+import { useMovieStore } from '@/stores/movieStore';
+import { createRouter, createWebHistory } from "vue-router";
 import TopMovieCarousel from "@/components/movies/top-movie-carousel.vue";
 import { mockMovies } from "../../fixtures/mockMovies.mock";
-import detailsMovies from "@/components/movies/details-movies.vue";
 
-// Simulez les paramètres de route
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -41,7 +38,7 @@ describe('TopMovieCard.vue', () => {
 
     const skeletonLoaders = wrapper.findAll('v-skeleton-loader');
 
-    expect(skeletonLoaders.length).toBe(2); // Il devrait y avoir 2 skeletons
+    expect(skeletonLoaders.length).toBe(2);
   });
 
   it('should display top 5 movies when available', async () => {

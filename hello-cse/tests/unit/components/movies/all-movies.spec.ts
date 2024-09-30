@@ -52,7 +52,7 @@ describe('AllMovies.vue', () => {
 
     await wrapper.vm.load({ done: vi.fn() });
 
-    expect(movieStore.upComingMovies.length).toBe(mockMovies.length); // Vérifie que les films sont chargés
+    expect(movieStore.upComingMovies.length).toBe(mockMovies.length);
   });
 
   it('should navigate to movie detail page', async () => {

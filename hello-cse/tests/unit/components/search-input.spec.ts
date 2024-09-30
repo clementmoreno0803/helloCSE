@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
-import SearchInput from "@/components/search-input.vue"; // Assurez-vous que le chemin est correct
+import SearchInput from "@/components/search-input.vue";
 
 const mocksetSearchFilters = {
   setSearchFilters: vi.fn()
@@ -35,11 +35,9 @@ describe('SearchBar', () => {
     const wrapper = generateWrapper();
     const input = wrapper.find('input');
 
-    // Test de focusin
     await input.trigger('focusin');
     expect(wrapper.vm.widthInput).toBe('16rem');
 
-    // Test de focusout
     await input.trigger('focusout');
     expect(wrapper.vm.widthInput).toBe('2rem');
   });
