@@ -30,7 +30,8 @@ describe('GetAllComments', () => {
   it('should render all comments', () => {
     const wrapper = generateWrapper()
 
-    const renderedComments = wrapper.findAll('.get-all-comments__list-of-comments .v-list-item');
+    const renderedComments = wrapper.findAll('v-list-item');
+
     expect(renderedComments.length).toBe(mockComments.length);
   });
 

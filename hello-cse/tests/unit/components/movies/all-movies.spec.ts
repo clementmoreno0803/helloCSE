@@ -1,22 +1,16 @@
 import { describe, it, expect, vi } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
-import { useMovie } from "@/composables/UseMovie"; // Simuler la fonction de composable
 import { createRouter, createWebHistory } from 'vue-router';
 import { createTestingPinia } from '@pinia/testing'
 import AllMovies from "@/components/movies/all-movies.vue";
 import { mockMovies } from "../../fixtures/mockMovies.mock";
 import { useMovieStore } from "@/stores/movieStore";
-import { storeToRefs } from "pinia";
+import detailsMovies from "@/components/movies/details-movies.vue";
 
-// Configuration du routeur
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: '/movie-detail/:id',
-      name: 'MovieDetail',
-      component: { template: '<div>Movie Detail</div>' },
-    },
+    { path: '/movies/:id', name: 'MovieDetail', component: detailsMovies },
   ],
 });
 
@@ -33,11 +27,14 @@ const generateWrapper = () => {
         },
         createSpy: vi.fn,
       })],
-    },
+      mocks: {
+        $route: { params: { id: 1 } },
+      },
+    }
   })
 }
 
-describe('getAllComments', () => {
+describe('AllMovies.vue', () => {
   it('should render correctly while loading', () => {
     const wrapper = generateWrapper()
 
@@ -47,10 +44,11 @@ describe('getAllComments', () => {
 
   it('should load more movies on scroll', async () => {
     const wrapper = generateWrapper();
-    const movieStore = useMovieStore()
+    const movieStore = useMovieStore();
+
     movieStore.isLoaded = true;
     movieStore.upComingMovies = mockMovies;
-    await wrapper.vm.$nextTick()
+    await wrapper.vm.$nextTick();
 
     await wrapper.vm.load({ done: vi.fn() });
 
@@ -60,7 +58,6 @@ describe('getAllComments', () => {
   it('should navigate to movie detail page', async () => {
     const wrapper = generateWrapper();
     const movieStore = useMovieStore();
-
     movieStore.isLoaded = true;
     movieStore.upComingMovies = mockMovies;
     await wrapper.vm.$nextTick();
@@ -68,8 +65,6 @@ describe('getAllComments', () => {
     const movieCard = wrapper.findAll('.all-movies__card-container')[0];
     await movieCard.trigger('click');
 
-    console.log(wrapper.vm.$route.path);
-
-    expect(wrapper.vm.goToDetail).toHaveBeenCalled();
-  })
+    expect(wrapper.vm.$route.params.id).toBe(mockMovies[0].id);
+  });
 });

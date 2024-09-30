@@ -1,14 +1,7 @@
-import { mount } from "@vue/test-utils";
-import CommentsArea from "@/components/comments/comments-area.vue";
-
-
-
 import { describe, it, expect, vi } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
 import CommentsArea from "@/components/comments/comments-area.vue";
-import { useMovie } from "@/composables/UseMovie"; // Assurez-vous que le chemin est correct
 
-// Mock des fonctions de useMovie
 const mockSetMovieComment = vi.fn();
 const mockGetMovieComment = vi.fn(() => []);
 
