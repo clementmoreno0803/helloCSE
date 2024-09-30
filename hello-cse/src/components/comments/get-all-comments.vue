@@ -31,8 +31,6 @@ const props = defineProps<{
   comments: CommentForm[];
 }>();
 
-console.log(props.comments, "comments");
-
 const getMinutesSincePublished = (dateCreation: string | Date) => {
   const now = dayjs();
   const createdAt = dayjs(dateCreation);

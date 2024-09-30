@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MoviesView > should render correctly 1`] = `
+<div
+  class="home"
+  data-v-52680e33=""
+>
+  <top-movie-carousel-stub
+    data-v-52680e33=""
+  />
+  <all-movies-stub
+    data-v-52680e33=""
+  />
+</div>
+`;

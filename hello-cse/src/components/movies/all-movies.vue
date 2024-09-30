@@ -75,11 +75,9 @@ const isLoading = ref(false);
 
 const page = ref(2);
 async function api() {
-  // Retourne une promesse avec les films
   return useMovieService().upComingMovies(page.value);
 }
 
-// Fonction de chargement des nouveaux éléments
 const load = async ({ done }) => {
   if (!hasMore.value || isLoading.value) {
     done("ok");
@@ -89,10 +87,8 @@ const load = async ({ done }) => {
   isLoading.value = true;
 
   try {
-    // Appel à l'API pour récupérer les films
     const newMovies = await api();
 
-    // Vérifiez s'il y a des nouveaux films
     if (newMovies.length > 0) {
       upComingMovies.value.push(...newMovies); // Mettez à jour votre store
       page.value++; // Passez à la page suivante
@@ -112,6 +108,7 @@ const load = async ({ done }) => {
 onMounted(() => {
   getUpCommingMovies(1);
 });
+defineExpose({goToDetail})
 </script>
 
 <style lang="scss" scoped>

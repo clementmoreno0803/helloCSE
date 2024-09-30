@@ -11,6 +11,7 @@ export const useMovieStore = defineStore("movieStore", () => {
   const inputFilter = ref<string>("");
   const isLoaded = ref<boolean>(false);
 
+  console.log(movieDetails.value);
   //getter
 
   const getFilteredMovies = computed(() => {

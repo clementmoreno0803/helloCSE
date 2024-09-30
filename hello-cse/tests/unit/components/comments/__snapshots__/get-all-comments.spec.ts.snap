@@ -1,0 +1,114 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GetAllComments > should render correctly 1`] = `
+<div
+  data-v-6c752411=""
+>
+  <div
+    class="get-all-comments__title"
+    data-v-6c752411=""
+  >
+    <h3
+      data-v-6c752411=""
+    >
+      Commentaires:
+    </h3>
+    <span
+      class="get-all-comments__number-of-comments"
+      data-v-6c752411=""
+    >
+      2
+    </span>
+  </div>
+  <v-list
+    class="get-all-comments__list-of-comments"
+    data-v-6c752411=""
+    lines="two"
+  >
+    
+    <v-list-item
+      data-v-6c752411=""
+      prepend-avatar="https://thispersondoesnotexist.com/"
+    >
+      <div
+        class="get-all-comments__comment-part"
+        data-v-6c752411=""
+      >
+        <div
+          class="get-all-comments__name"
+          data-v-6c752411=""
+        >
+          <h3
+            data-v-6c752411=""
+          >
+            User1
+          </h3>
+          <p
+            data-v-6c752411=""
+          >
+            <span
+              data-v-6c752411=""
+              style="color: orange;"
+            >
+              8
+            </span>
+             /10 
+          </p>
+        </div>
+        <h4
+          data-v-6c752411=""
+        >
+          Il y a 5 minutes
+        </h4>
+        <p
+          data-v-6c752411=""
+        >
+          This is a comment.
+        </p>
+      </div>
+    </v-list-item>
+    <v-list-item
+      data-v-6c752411=""
+      prepend-avatar="https://thispersondoesnotexist.com/"
+    >
+      <div
+        class="get-all-comments__comment-part"
+        data-v-6c752411=""
+      >
+        <div
+          class="get-all-comments__name"
+          data-v-6c752411=""
+        >
+          <h3
+            data-v-6c752411=""
+          >
+            User2
+          </h3>
+          <p
+            data-v-6c752411=""
+          >
+            <span
+              data-v-6c752411=""
+              style="color: orange;"
+            >
+              9
+            </span>
+             /10 
+          </p>
+        </div>
+        <h4
+          data-v-6c752411=""
+        >
+          Il y a 2 minutes
+        </h4>
+        <p
+          data-v-6c752411=""
+        >
+          This is another comment.
+        </p>
+      </div>
+    </v-list-item>
+    
+  </v-list>
+</div>
+`;

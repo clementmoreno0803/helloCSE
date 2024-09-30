@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SearchBar > should render correctly 1`] = `
+<div
+  class="search-bar"
+  data-v-02b2df00=""
+>
+  <input
+    class="search-input"
+    data-testid="input-search"
+    data-v-02b2df00=""
+    placeholder="Veuillez renseigner un film"
+    style="width: 2rem;"
+    type="text"
+  />
+</div>
+`;

@@ -3,6 +3,7 @@
     <input
       type="text"
       v-model="inputSearch"
+      data-testid="input-search"
       class="search-input"
       placeholder="Veuillez renseigner un film"
       :style="{ width: widthInput }"
