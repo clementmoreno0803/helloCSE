@@ -19,7 +19,7 @@ h1 {
 nav {
   position: sticky;
   top: 0;
-  z-index: $z-top;
+  z-index: 2 * $z-top;
   padding: 2rem;
   display: flex;
   background: $background-black;

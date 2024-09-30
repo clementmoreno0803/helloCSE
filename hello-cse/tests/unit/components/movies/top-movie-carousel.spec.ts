@@ -42,7 +42,7 @@ describe('TopMovieCard.vue', () => {
   });
 
   it('should display top 5 movies when available', async () => {
-    const wrapper = generateWrapper(mockMovies);
+    const wrapper = generateWrapper();
     useMovieStore().getTopFiveMovies = mockMovies
     await wrapper.vm.$nextTick()
 

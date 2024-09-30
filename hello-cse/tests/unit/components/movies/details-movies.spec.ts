@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { shallowMount } from '@vue/test-utils';
 import detailsMovies from "@/components/movies/details-movies.vue";
-import { mockMovieDetail, mockTop4Actors } from "../../fixtures/mockDetailsMovie.mock";
+import { mockMovieDetail } from "../../fixtures/mockDetailsMovie.mock";
 import { createTestingPinia } from "@pinia/testing";
 import { createRouter, createWebHistory } from 'vue-router';
 import { useMovieStore } from "@/stores/movieStore";
@@ -19,11 +19,6 @@ const generateWrapper = () => {
       plugins: [
         router,
         createTestingPinia({
-          initialState: {
-            movieStore: {
-              top4Actors: mockTop4Actors,
-            },
-          },
           createSpy: vi.fn,
         }),
       ],

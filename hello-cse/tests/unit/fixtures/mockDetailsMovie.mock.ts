@@ -6,7 +6,7 @@ export const mockMovieDetail: movieDetail = {
   overview: 'This is an example movie overview.',
   poster_path: '/example-movie-poster.jpg',
   vote_count: 100,
-  vote_average: 7.8,
+  vote_average: '7.8',
   genres: ['Action', 'Drama'],
   cast: [
     { id: 1, name: 'Actor One', character: 'Character One', profile_path: '/actor-one.jpg' },

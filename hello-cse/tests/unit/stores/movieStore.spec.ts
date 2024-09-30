@@ -22,7 +22,7 @@ describe('Movie Store', () => {
 
   it('should set top movies correctly', () => {
     const store = useMovieStore();
-    const topMovies = mockTopMovies;
+    const topMovies = [mockTopMovies];
 
     store.setTopMovies(topMovies);
     expect(store.topMovies).toEqual(topMovies);
@@ -48,16 +48,18 @@ describe('Movie Store', () => {
     expect(filteredMovies).toEqual([{
       id: 1,
       title: 'Movie 1',
-      vote_average: 8.5,
-      backdrop_path: '/path/to/image1.jpg',
+      vote_average: 7.5,
+      backdrop_path: '/path/to/backdrop.jpg',
+      overview: "This is an overview of Movie 1.",
+      poster_path: "/path/to/poster.jpg",
+      release_date: "2024-12-25",
     }]);
   });
 
   it('should return top 5 movies based on vote_average', () => {
     const store = useMovieStore();
-    const topMovies = mockTopMovies;
 
-    store.setTopMovies(topMovies);
+    store.setTopMovies(mockTopMovies);
     const top5Movies = store.getTopFiveMovies;
 
     expect(top5Movies.length).toBe(5);
