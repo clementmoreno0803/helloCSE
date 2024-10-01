@@ -90,8 +90,6 @@ const submitComment = () => {
 
   v$.value.$touch();
   if (!v$.value.$invalid) {
-    console.log(comment.value, "comment");
-
     setMovieComment(comment.value);
     allComments.value = getMovieComment(movieId);
     clear();

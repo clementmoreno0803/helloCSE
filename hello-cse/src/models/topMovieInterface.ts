@@ -1,6 +1,6 @@
 export interface topMovieInterface {
   backdrop_path: string;
-  genre_ids: Array<number>;
+  genre_ids: number[];
   id: number;
   overview: string;
   poster_path: string;

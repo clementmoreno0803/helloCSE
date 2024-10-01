@@ -70,6 +70,7 @@ const { getMovieDetail } = useMovie();
 const { movieDetails, listTop4Actors } = storeToRefs(useMovieStore());
 const movieId = useMovieId();
 
+console.log(movieId, "MovieID");
 onMounted(async () => {
   await getMovieDetail(movieId);
 });

@@ -6,6 +6,7 @@ import { useMovieId } from "./UseMovieId";
 export const useMovie = () => {
   const { topMovies, upComingMovies, movieDetails } = useMovieService();
   const { setTopMovies, setUpComingMovies, setMovieFilterByName, setMovieDetails } = useMovieStore();
+  const movieId = useMovieId();
 
   const getTopMovies = async () => {
     const topMoviesArray = await topMovies();
@@ -27,8 +28,6 @@ export const useMovie = () => {
   };
 
   const setMovieComment = (comment: CommentForm) => {
-    const movieId = useMovieId();
-
     const existingComments = JSON.parse(localStorage.getItem(`comments_${movieId}`) || "[]");
     existingComments.push(comment);
     localStorage.setItem(`comments_${movieId}`, JSON.stringify(existingComments));

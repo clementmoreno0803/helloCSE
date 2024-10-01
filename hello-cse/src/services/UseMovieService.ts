@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { ALL_MOVIES, API_KEY, DETAILS, UP_COMING_MOVIES } from "@/constants/movies";
 import axios from "axios";
 import { topMovieDtoToTopmovie } from "@/mappers/topMovieDtoToTopmovie";
@@ -6,21 +5,19 @@ import { topMovieDto } from "@/models/dto/topMovieDto";
 import { upComingMoviesDto } from "@/models/dto/upCommingMovieDto";
 import { movieDtoTomovie } from "@/mappers/movieDtoTomovie";
 import { movieAndCrewDtoToMovieDetails } from "@/mappers/movieAndCrewDtoToMovieDetails";
-import { CreditsDto } from "@/models/dto/credits/creditsDto";
-import { movieDetailsDto } from "@/models/dto/movieDetailsDto";
 
 export const useMovieService = () => {
   const topMovies = async () => {
-    try{
-    const response = await axios.get(ALL_MOVIES, {
-      params: {
-        api_key: API_KEY
-      }
-    });
-    return response.data.results
-      ? response.data.results.map((topMovie: topMovieDto) => topMovieDtoToTopmovie(topMovie))
-      : [];
-    } catch(error){
+    try {
+      const response = await axios.get(ALL_MOVIES, {
+        params: {
+          api_key: API_KEY
+        }
+      });
+      return response.data.results
+        ? response.data.results.map((topMovie: topMovieDto) => topMovieDtoToTopmovie(topMovie))
+        : [];
+    } catch (error) {
       console.log(error);
     }
   };
@@ -48,17 +45,17 @@ export const useMovieService = () => {
           api_key: API_KEY
         }
       });
-    const crew = await axios.get(`${DETAILS + id}/credits`, {
-      params: {
-        api_key: API_KEY
-      }
-    });
-    return response.data && crew.data ? movieAndCrewDtoToMovieDetails(response.data, crew.data) : undefined;
-      } catch (error) {
-        console.log(error);
-        return undefined
+      const crew = await axios.get(`${DETAILS + id}/credits`, {
+        params: {
+          api_key: API_KEY
+        }
+      });
+      return response.data && crew.data ? movieAndCrewDtoToMovieDetails(response.data, crew.data) : undefined;
+    } catch (error) {
+      console.log(error);
+      return undefined;
     }
-  }
+  };
 
   return {
     topMovies,

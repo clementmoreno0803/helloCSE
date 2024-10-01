@@ -1,42 +1,41 @@
-import { describe, it, expect } from 'vitest';
-import { shallowMount } from '@vue/test-utils';
+import { describe, it, expect } from "vitest";
+import { shallowMount } from "@vue/test-utils";
 import GetAllComments from "@/components/comments/get-all-comments.vue";
 import { mockComments } from "../../fixtures/mockComments.mock";
 
 const generateWrapper = () => {
   return shallowMount(GetAllComments, {
     props: {
-      comments: mockComments,
-    },
-  })
-}
+      comments: mockComments
+    }
+  });
+};
 
-describe('GetAllComments', () => {
-
-  it('should render correctly', () => {
-    const wrapper = generateWrapper()
+describe("GetAllComments", () => {
+  it("should render correctly", () => {
+    const wrapper = generateWrapper();
 
     expect(wrapper.element).toMatchSnapshot();
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('should display the correct number of comments', () => {
-    const wrapper = generateWrapper()
+  it("should display the correct number of comments", () => {
+    const wrapper = generateWrapper();
 
-    const numberOfComments = wrapper.find('.get-all-comments__number-of-comments');
+    const numberOfComments = wrapper.find(".get-all-comments__number-of-comments");
     expect(numberOfComments.text()).toBe(`${mockComments.length}`);
   });
 
-  it('should render all comments', () => {
-    const wrapper = generateWrapper()
+  it("should render all comments", () => {
+    const wrapper = generateWrapper();
 
-    const renderedComments = wrapper.findAll('v-list-item');
+    const renderedComments = wrapper.findAll("v-list-item");
 
     expect(renderedComments.length).toBe(mockComments.length);
   });
 
-  it('should calculate minutes since published correctly', () => {
-    const wrapper = generateWrapper()
+  it("should calculate minutes since published correctly", () => {
+    const wrapper = generateWrapper();
 
     const minutesSincePublished = wrapper.vm.getMinutesSincePublished(mockComments[0].dateCreation);
     expect(minutesSincePublished).toBe(5);

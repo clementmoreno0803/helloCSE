@@ -108,7 +108,6 @@ const load = async ({ done }) => {
 onMounted(() => {
   getUpCommingMovies(1);
 });
-defineExpose({goToDetail})
 </script>
 
 <style lang="scss" scoped>

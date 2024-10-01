@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build ",
     "deploy": "npm run build && gh-pages -d dist",
     "test": "vitest",
     "lint": "vue-cli-service lint"
@@ -39,9 +39,10 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/test-utils": "^2.0.0-0",
-    "eslint": "8.8.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vitest": "^0.5.4",
     "eslint-plugin-vue": "^8.0.3",
     "gh-pages": "^6.1.1",
     "jsdom": "^25.0.1",
@@ -52,9 +53,6 @@
   },
   "eslintConfig": {
     "root": true,
-    "env": {
-      "node": true
-    },
     "extends": [
       "plugin:vue/vue3-essential",
       "eslint:recommended",
@@ -62,7 +60,8 @@
       "plugin:prettier/recommended"
     ],
     "parserOptions": {
-      "ecmaVersion": 2022
+      "ecmaVersion": "latest",
+      "sourceType": "module"
     },
     "rules": {},
     "overrides": [
@@ -70,17 +69,8 @@
         "files": [
           "**/__tests__/*.{j,t}s?(x)",
           "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "vitest": true
-        }
+        ]
       }
     ]
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ]
+  }
 }
