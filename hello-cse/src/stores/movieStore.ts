@@ -19,14 +19,12 @@ export const useMovieStore = defineStore("movieStore", () => {
 
   const getTopFiveMovies = computed(() => {
     const moviesSorted = topMovies.value.sort((a, b) => b.vote_average - a.vote_average);
-    const top5Movies = moviesSorted.slice(0, 5);
-    return top5Movies;
+    return moviesSorted.slice(0, 5);
   });
 
   const listTop4Actors = computed(() => {
     const castingSorted = movieDetails.value?.cast.sort((a, b) => b.popularity - a.popularity);
-    const top4Actors = castingSorted?.slice(0, 4);
-    return top4Actors;
+    return castingSorted?.slice(0, 4);
   });
 
   //setter
