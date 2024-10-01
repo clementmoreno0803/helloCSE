@@ -79,7 +79,7 @@ const items = ref([
   {
     title: "Home",
     disabled: false,
-    href: "/helloCSE/"
+    href: "https://clementmoreno0803.github.io/helloCSE/"
   },
   {
     title: `${movieId}`,
