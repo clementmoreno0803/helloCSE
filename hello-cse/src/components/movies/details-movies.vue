@@ -35,10 +35,15 @@
               <v-list-item
                 v-for="crew in movieDetails.director"
                 :key="crew.id"
-                :title="crew.name"
                 :subtitle="crew.job"
                 :prepend-avatar="`https://image.tmdb.org/t/p/w185/${crew.profile_path}`"
-              ></v-list-item>
+              >
+                <v-tooltip :text="crew.name" location="bottom">
+                  <template v-slot:activator="{ props }">
+                    <p class="movies-details__card-title" v-bind="props">{{ crew.name }}</p>
+                  </template>
+                </v-tooltip>
+              </v-list-item>
             </v-list>
           </div>
           <v-list lines="two" class="movies-details__cast">

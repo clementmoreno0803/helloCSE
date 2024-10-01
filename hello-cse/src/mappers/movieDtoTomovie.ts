@@ -8,6 +8,6 @@ export const movieDtoTomovie = (movieDto: upComingMoviesDto): upComingMoviesInte
     overview: movieDto.overview,
     release_date: movieDto.release_date,
     title: movieDto.title,
-    vote_average: Math.round(movieDto.vote_average * 10)
+    vote_average: Math.round(movieDto.vote_average * 10) / 10
   };
 };

@@ -44,7 +44,7 @@
                   d="M19.467,23.316,12,17.828,4.533,23.316,7.4,14.453-.063,9H9.151L12,.122,14.849,9h9.213L16.6,14.453Z"
                 />
               </svg>
-              <p>{{ `${movie.vote_average}%` }} | {{ dayjs(movie.release_date).year() }}</p>
+              <p>{{ `${movie.vote_average}`}}<span class="all-movies__average-vote">/ 10</span> | {{ dayjs(movie.release_date).year() }}</p>
             </div>
           </div>
         </v-infinite-scroll>
@@ -176,9 +176,13 @@ onMounted(() => {
     justify-content: center;
     p {
       @include flexGap(0.5rem);
+      align-items: center;
       margin-left: 0.5rem;
       color: $gris-clair;
     }
+  }
+  &__average-vote{
+    font-size: 0.8rem;
   }
 }
 ::v-deep .v-infinite-scroll__side {

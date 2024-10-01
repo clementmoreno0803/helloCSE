@@ -22,7 +22,6 @@ export const useMovieStore = defineStore("movieStore", () => {
   const getTopFiveMovies = computed(() => {
     const moviesSorted = topMovies.value.sort((a, b) => b.vote_average - a.vote_average);
     return moviesSorted.slice(0, 5);
-    return moviesSorted.slice(0, 5);
   });
 
   const getHeightCurrentMovies = computed(() => {
