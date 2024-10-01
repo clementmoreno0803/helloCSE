@@ -46,7 +46,6 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-
 ::v-deep .v-window__container {
   height: 100%;
   object-fit: 50%;
