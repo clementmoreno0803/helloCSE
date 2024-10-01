@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-breadcrumbs :items="items"></v-breadcrumbs>
     <v-skeleton-loader
       v-if="!movieDetails"
       color="rgb(28,28,28)"
@@ -59,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useMovie } from "@/composables/UseMovie";
 import { storeToRefs } from "pinia";
 import { useMovieStore } from "@/stores/movieStore";
@@ -69,8 +70,18 @@ import commentsArea from "../comments/comments-area.vue";
 const { getMovieDetail } = useMovie();
 const { movieDetails, listTop4Actors } = storeToRefs(useMovieStore());
 const movieId = useMovieId();
+const items = ref([
+  {
+    title: "Home",
+    disabled: false,
+    href: "/"
+  },
+  {
+    title: `${movieId}`,
+    disabled: true
+  }
+]);
 
-console.log(movieId, "MovieID");
 onMounted(async () => {
   await getMovieDetail(movieId);
 });
@@ -176,5 +187,8 @@ onMounted(async () => {
       }
     }
   }
+}
+.v-breadcrumbs-item {
+  color: white;
 }
 </style>
