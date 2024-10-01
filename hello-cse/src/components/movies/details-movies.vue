@@ -79,7 +79,7 @@ const items = ref([
   {
     title: "Home",
     disabled: false,
-    href: "/"
+    href: "/helloCSE/"
   },
   {
     title: `${movieId}`,
