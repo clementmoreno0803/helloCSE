@@ -46,11 +46,7 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap");
 
-* {
-  font-family: "Poppins";
-}
 ::v-deep .v-window__container {
   height: 100%;
   object-fit: 50%;
@@ -121,6 +117,7 @@ onMounted(async () => {
     left: 2rem;
     bottom: 2rem;
     h2 {
+      font-family: $poppins;
       color: white;
       text-align: left;
       font-size: 1.75rem;

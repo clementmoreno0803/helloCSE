@@ -71,9 +71,9 @@ describe("useMovie composable", () => {
       ])
     );
 
-    const sortedComments = useMovie().getMovieComment("1"); // Note: Pass '1' as a string
+    const sortedComments = useMovie().getMovieComment("1");
 
-    expect(sortedComments[0].name).toBe("User 1"); // First comment after sorting
-    expect(sortedComments[1].name).toBe("User 2"); // Second comment after sorting
+    expect(sortedComments[0].name).toBe("User 1");
+    expect(sortedComments[1].name).toBe("User 2");
   });
 });
