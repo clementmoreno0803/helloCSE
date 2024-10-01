@@ -30,7 +30,7 @@ describe("HeaderComponent", () => {
 
     const title = wrapper.find("h1");
     expect(title.exists()).toBe(true);
-    expect(title.text()).toBe("HELLO CSE");
+    expect(title.text()).toBe("STREAM");
 
     const searchInput = wrapper.findComponent({ name: "search-input" });
     expect(searchInput.exists()).toBe(true);

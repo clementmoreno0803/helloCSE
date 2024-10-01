@@ -51,7 +51,7 @@
               >
                 <v-tooltip :text="cast.name" location="bottom">
                   <template v-slot:activator="{ props }">
-                    <p class="all-movies__card-title" v-bind="props">{{ cast.name }}</p>
+                    <p class="movies-details__card-title" v-bind="props">{{ cast.name }}</p>
                   </template>
                 </v-tooltip>
               </v-list-item>
@@ -164,16 +164,27 @@ onMounted(async () => {
   &__cast {
     @include responsive("mobile") {
       @include __cast;
+      @include __card-title;
       justify-content: center;
       flex-wrap: wrap;
+      cursor: pointer;
     }
     @include responsive("tablet") {
       @include __cast;
       flex-wrap: wrap;
+      cursor: pointer;
+      @include __card-title;
     }
     @include responsive("desktop") {
       @include __cast;
+      @include __card-title;
       flex-wrap: wrap;
+      cursor: pointer;
+    }
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &--width {
