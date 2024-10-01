@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AllMovies.vue > should render correctly 1`] = `
+<div
+  data-v-46e237f8=""
+>
+  <div
+    data-v-46e237f8=""
+  >
+    <v-skeleton-loader
+      class="skeleton-title"
+      color="rgb(28,28,28)"
+      data-v-46e237f8=""
+      elevation="3"
+      type="paragraph"
+    />
+    <v-skeleton-loader
+      class="top-movie-card__carousel-container"
+      color="rgb(28,28,28)"
+      data-v-46e237f8=""
+      elevation="3"
+      type="card"
+    />
+  </div>
+</div>
+`;

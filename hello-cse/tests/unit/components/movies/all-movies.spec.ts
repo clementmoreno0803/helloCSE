@@ -36,6 +36,11 @@ const generateWrapper = () => {
 };
 
 describe("AllMovies.vue", () => {
+  it("should render correctly", () => {
+    const wrapper = generateWrapper();
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
   it("should render correctly while loading", () => {
     const wrapper = generateWrapper();
 

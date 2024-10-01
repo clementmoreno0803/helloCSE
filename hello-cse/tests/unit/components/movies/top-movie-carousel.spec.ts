@@ -32,6 +32,11 @@ const generateWrapper = () => {
 };
 
 describe("TopMovieCard.vue", () => {
+  it("should render correctly", () => {
+    const wrapper = generateWrapper();
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
   it("should show skeleton loaders when no movies are available", async () => {
     const wrapper = generateWrapper();
 
