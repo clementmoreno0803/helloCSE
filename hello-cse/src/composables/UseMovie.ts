@@ -4,8 +4,8 @@ import { useMovieStore } from "@/stores/movieStore";
 import { useMovieId } from "./UseMovieId";
 
 export const useMovie = () => {
-  const { topMovies, upComingMovies, movieDetails } = useMovieService();
-  const { setTopMovies, setUpComingMovies, setMovieFilterByName, setMovieDetails } = useMovieStore();
+  const { topMovies, upComingMovies, movieDetails, nowPlayingMovies } = useMovieService();
+  const { setTopMovies, setUpComingMovies, setMovieFilterByName, setMovieDetails, setCurrentMovies } = useMovieStore();
   const movieId = useMovieId();
 
   const getTopMovies = async () => {
@@ -16,6 +16,11 @@ export const useMovie = () => {
   const getUpCommingMovies = async (pageNumber: number) => {
     const upComingMoviesArray = await upComingMovies(pageNumber);
     setUpComingMovies(upComingMoviesArray);
+  };
+
+  const getCurrentMovies = async () => {
+    const currentMoviesArray = await nowPlayingMovies();
+    setCurrentMovies(currentMoviesArray);
   };
 
   const setSearchFilters = (input: string) => {
@@ -41,5 +46,13 @@ export const useMovie = () => {
     return commentsSorted;
   };
 
-  return { getTopMovies, getUpCommingMovies, getMovieDetail, setSearchFilters, setMovieComment, getMovieComment };
+  return {
+    getTopMovies,
+    getCurrentMovies,
+    getUpCommingMovies,
+    getMovieDetail,
+    setSearchFilters,
+    setMovieComment,
+    getMovieComment
+  };
 };

@@ -3,9 +3,11 @@ import { topMovieInterface } from "@/models/topMovieInterface";
 import { upComingMoviesInterface } from "@/models/upCommingMovieInterface";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
+import { currentMovieInterface } from "@/models/currentMovieInterface";
 
 export const useMovieStore = defineStore("movieStore", () => {
   const topMovies = ref<topMovieInterface[]>([]);
+  const currentMovies = ref<currentMovieInterface[]>([]);
   const upComingMovies = ref<upComingMoviesInterface[]>([]);
   const movieDetails = ref<movieDetail>();
   const inputFilter = ref<string>("");
@@ -20,6 +22,11 @@ export const useMovieStore = defineStore("movieStore", () => {
   const getTopFiveMovies = computed(() => {
     const moviesSorted = topMovies.value.sort((a, b) => b.vote_average - a.vote_average);
     return moviesSorted.slice(0, 5);
+    return moviesSorted.slice(0, 5);
+  });
+
+  const getHeightCurrentMovies = computed(() => {
+    return currentMovies.value.slice(0, 8);
   });
 
   const listTop4Actors = computed(() => {
@@ -30,6 +37,9 @@ export const useMovieStore = defineStore("movieStore", () => {
   //setter
   const setTopMovies = (newMovies: topMovieInterface[]) => {
     topMovies.value = newMovies;
+  };
+  const setCurrentMovies = (newCurrentMovie: currentMovieInterface[]) => {
+    currentMovies.value = newCurrentMovie;
   };
   const setUpComingMovies = (newMovies: upComingMoviesInterface[]) => {
     upComingMovies.value = newMovies;
@@ -50,10 +60,12 @@ export const useMovieStore = defineStore("movieStore", () => {
     inputFilter,
     getFilteredMovies,
     getTopFiveMovies,
+    getHeightCurrentMovies,
     movieDetails,
     listTop4Actors,
     isLoaded,
     setTopMovies,
+    setCurrentMovies,
     setUpComingMovies,
     setMovieFilterByName,
     setMovieDetails

@@ -100,15 +100,15 @@ onMounted(async () => {
   &__carousel-container {
     @include responsive("mobile") {
       @include _carousel-container;
-      max-width: 95vw;
+      width: 95vw;
     }
     @include responsive("tablet") {
       @include _carousel-container;
-      max-width: 45vw;
+      width: 45vw;
     }
     @include responsive("desktop") {
       @include _carousel-container;
-      max-width: 45vw;
+      width: 45vw;
     }
   }
   &__carousel-item {

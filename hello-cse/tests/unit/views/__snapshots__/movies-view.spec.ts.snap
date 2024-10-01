@@ -5,9 +5,17 @@ exports[`MoviesView > should render correctly 1`] = `
   class="home"
   data-v-52680e33=""
 >
-  <top-movie-carousel-stub
+  <div
+    class="home__carousel"
     data-v-52680e33=""
-  />
+  >
+    <top-movie-carousel-stub
+      data-v-52680e33=""
+    />
+    <now-playing-carousel-stub
+      data-v-52680e33=""
+    />
+  </div>
   <all-movies-stub
     data-v-52680e33=""
   />

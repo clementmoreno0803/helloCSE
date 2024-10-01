@@ -4,7 +4,7 @@ import { describe, it, expect, vi } from "vitest";
 import { createTestingPinia } from "@pinia/testing";
 import { useMovieStore } from "@/stores/movieStore";
 import { createRouter, createWebHistory } from "vue-router";
-import TopMovieCarousel from "@/components/movies/top-movie-carousel.vue";
+import TopMovieCarousel from "@/components/movies/carousels/top-movie-carousel.vue";
 import { mockTopMovies } from "../../fixtures/mockTopMovies.mock";
 
 

@@ -2,22 +2,22 @@
 
 exports[`TopMovieCard.vue > should render correctly 1`] = `
 <div
-  data-v-5a6928d2=""
+  data-v-71284700=""
 >
   <v-skeleton-loader
     class="top-movie-card__title"
     color="rgb(28,28,28)"
-    data-v-5a6928d2=""
+    data-v-71284700=""
     elevation="3"
     type="paragraph"
   />
   <div
-    data-v-5a6928d2=""
+    data-v-71284700=""
   >
     <v-skeleton-loader
       class="top-movie-card__carousel-container"
       color="rgb(28,28,28)"
-      data-v-5a6928d2=""
+      data-v-71284700=""
       elevation="3"
       type="card"
     />

@@ -6,6 +6,12 @@
   left: 0;
 }
 
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @mixin flexGap($gap) {
   display: flex;
   gap: $gap;

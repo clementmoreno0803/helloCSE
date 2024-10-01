@@ -1,10 +1,12 @@
-import { ALL_MOVIES, API_KEY, DETAILS, UP_COMING_MOVIES } from "@/constants/movies";
+import { ALL_MOVIES, API_KEY, DETAILS, NOM_PLAYING_MOVIES, UP_COMING_MOVIES } from "@/constants/movies";
 import axios from "axios";
 import { topMovieDtoToTopmovie } from "@/mappers/topMovieDtoToTopmovie";
 import { topMovieDto } from "@/models/dto/topMovieDto";
 import { upComingMoviesDto } from "@/models/dto/upCommingMovieDto";
 import { movieDtoTomovie } from "@/mappers/movieDtoTomovie";
 import { movieAndCrewDtoToMovieDetails } from "@/mappers/movieAndCrewDtoToMovieDetails";
+import { CurrentMovieDto } from "@/models/dto/currentMovieDto";
+import { toCurrentMovieDtoToCurrentMovie } from "@/mappers/toCurrentMovieDtoToCurrentMovie";
 
 export const useMovieService = () => {
   const topMovies = async () => {
@@ -16,6 +18,21 @@ export const useMovieService = () => {
       });
       return response.data.results
         ? response.data.results.map((topMovie: topMovieDto) => topMovieDtoToTopmovie(topMovie))
+        : [];
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const nowPlayingMovies = async () => {
+    try {
+      const response = await axios.get(NOM_PLAYING_MOVIES, {
+        params: {
+          api_key: API_KEY
+        }
+      });
+      return response.data.results
+        ? response.data.results.map((currentMovies: CurrentMovieDto) => toCurrentMovieDtoToCurrentMovie(currentMovies))
         : [];
     } catch (error) {
       console.log(error);
@@ -59,6 +76,7 @@ export const useMovieService = () => {
 
   return {
     topMovies,
+    nowPlayingMovies,
     upComingMovies,
     movieDetails
   };
