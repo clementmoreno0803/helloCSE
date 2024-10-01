@@ -46,10 +46,15 @@
               <v-list-item
                 class="movies-details__cast--width"
                 v-if="cast.profile_path"
-                :title="cast.name"
                 :subtitle="cast.character"
                 :prepend-avatar="`https://image.tmdb.org/t/p/w185/${cast.profile_path}`"
-              ></v-list-item>
+              >
+                <v-tooltip :text="cast.name" location="bottom">
+                  <template v-slot:activator="{ props }">
+                    <p class="all-movies__card-title" v-bind="props">{{ cast.name }}</p>
+                  </template>
+                </v-tooltip>
+              </v-list-item>
             </template>
           </v-list>
         </div>

@@ -3,7 +3,7 @@ import { setActivePinia, createPinia } from "pinia";
 import { useMovieStore } from "@/stores/movieStore";
 import { mockTopMovies } from "../fixtures/mockTopMovies.mock";
 import { mockMovies } from "../fixtures/mockMovies.mock";
-import { mockMovieDetail } from "../fixtures/mockDetailsMovie.mock"; // Adapter le chemin
+import { mockMovieDetail } from "../fixtures/mockDetailsMovie.mock";
 
 describe("Movie Store", () => {
   beforeEach(() => {
@@ -67,8 +67,8 @@ describe("Movie Store", () => {
 
     const top5Movies = store.getTopFiveMovies;
 
-    expect(top5Movies.length).toBe(5); // Expect top 5 movies
-    expect(top5Movies[0].title).toBe("Movie One"); // Highest vote_average
+    expect(top5Movies.length).toBe(5);
+    expect(top5Movies[0].title).toBe("Movie One");
   });
 
   it("should return top 4 actors based on popularity", () => {

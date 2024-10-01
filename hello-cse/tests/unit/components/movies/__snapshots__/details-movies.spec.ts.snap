@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`detailsMovies.vue > should render correctly 1`] = `
+<div
+  data-v-959aa3f5=""
+>
+  <v-breadcrumbs
+    data-v-959aa3f5=""
+    items="[object Object],[object Object]"
+  />
+  <v-skeleton-loader
+    class="movies-details"
+    color="rgb(28,28,28)"
+    data-v-959aa3f5=""
+    elevation="13"
+    type="card"
+  />
+</div>
+`;

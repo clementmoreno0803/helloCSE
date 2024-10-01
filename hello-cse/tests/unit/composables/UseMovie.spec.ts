@@ -62,28 +62,6 @@ describe("useMovie composable", () => {
     expect(mockUseMovieStore.setMovieFilterByName).toHaveBeenCalledWith("some filter");
   });
 
-  // it('should add a new comment to localStorage for a given movie ID', () => {
-  //   const mockMovieId = "123";
-  //   const mockComment = { id: 1, name: 'Test User', commentPart: 'This is a comment', dateCreation: new Date().toISOString() };
-  //
-  //   // Mock des méthodes de localStorage
-  //   const setItemMock = vi.spyOn(localStorage, 'setItem');
-  //   const getItemMock = vi.spyOn(localStorage, 'getItem').mockReturnValueOnce("[]"); // Simule un localStorage vide
-  //
-  //   const { setMovieComment } = useMovie(); // Récupération de la fonction à tester
-  //   setMovieComment(mockMovieId, mockComment); // Appel de la fonction avec les données mockées
-  //
-  //   // Vérifie que setItem a été appelé avec la bonne clé et valeur
-  //   expect(setItemMock).toHaveBeenCalledWith(`comments_${mockMovieId}`, JSON.stringify([mockComment]));
-  //
-  //   // Vérifie que getItem a été appelé avec la bonne clé (si nécessaire)
-  //   expect(getItemMock).toHaveBeenCalledWith(`comments_${mockMovieId}`);
-  //
-  //   // Nettoyage des mocks
-  //   setItemMock.mockRestore();
-  //   getItemMock.mockRestore();
-  // });
-
   it("should retrieve and sort comments from localStorage", () => {
     localStorage.setItem(
       "comments_1",

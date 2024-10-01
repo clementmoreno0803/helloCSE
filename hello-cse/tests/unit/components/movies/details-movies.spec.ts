@@ -28,6 +28,11 @@ const generateWrapper = () => {
 };
 
 describe("detailsMovies.vue", () => {
+  it("should render correctly", () => {
+    const wrapper = generateWrapper();
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
   it("should render top 4 actors in the cast list", async () => {
     const wrapper = generateWrapper();
     useMovieStore().movieDetails = mockMovieDetail;
