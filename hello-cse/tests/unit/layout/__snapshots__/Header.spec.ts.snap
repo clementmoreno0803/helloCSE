@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HeaderComponent > should render correctly 1`] = `
+<header
+  data-v-1580a921=""
+>
+  <nav
+    data-v-1580a921=""
+  >
+    <a
+      class=""
+      data-v-1580a921=""
+      href="/"
+    >
+      <h1
+        data-v-1580a921=""
+      >
+        STREAM
+      </h1>
+    </a>
+    <div
+      class="search-bar"
+      data-v-02b2df00=""
+      data-v-1580a921=""
+    >
+      <input
+        class="search-input"
+        data-testid="input-search"
+        data-v-02b2df00=""
+        placeholder="Veuillez renseigner un film"
+        style="width: 2rem;"
+        type="text"
+      />
+    </div>
+  </nav>
+  <!---->
+</header>
+`;

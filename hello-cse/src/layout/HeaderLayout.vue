@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav>
-      <router-link to="/"><h1>HELLO CSE</h1></router-link>
+      <router-link to="/"><h1>STREAM</h1></router-link>
       <search-input></search-input>
     </nav>
     <router-view />

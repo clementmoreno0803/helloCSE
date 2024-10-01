@@ -20,6 +20,11 @@ const generateWrapper = () => {
   });
 };
 describe("HeaderComponent", () => {
+  it("should render correctly", () => {
+    const wrapper = generateWrapper();
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
   it("renders the header and nav elements", () => {
     const wrapper = generateWrapper();
 
